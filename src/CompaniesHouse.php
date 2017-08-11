@@ -66,7 +66,7 @@ class CompaniesHouse
         
         $response = $this->client->request('GET', 'search/companies', $params);
 
-        return $response;
+        return $response->getBody();
     }
 
     /**
@@ -81,7 +81,7 @@ class CompaniesHouse
         if (!empty($number) && $number != '') {
             $response = $this->client->request('GET', 'company/' . $number);
 
-            return $response;
+            return $response->getBody();
 
         } else {
 
