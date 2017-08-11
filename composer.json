@@ -1,0 +1,34 @@
+{
+    "name": "ghazanfar/laravel-companies-house",
+    "description": "This the Laravel Service Provider package to access CompaniesHouse API within your Laravel application.",
+    "keywords": ["companies-house", "laravel"],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ghazanfar Mir",
+            "email": "GhazanfarMir@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^5.3.3 || ^7.0",
+        "illuminate/support": "^5.4",
+        "guzzlehttp/guzzle": "^6.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "5.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ghazanfar\\CompaniesHouse\\": "src/"
+        }
+    },
+    "minimum-stability": "stable",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Ghazanfar\\CompaniesHouse\\CompaniesHouseServiceProvider"
+            ]
+        }
+    }
+}
