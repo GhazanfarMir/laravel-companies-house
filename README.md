@@ -9,7 +9,7 @@ Laravel package to access CompaniesHouse API within Laravel application
 To install, use the following to pull the package via `Composer`.
 
 ```
-composer require ghazanfar/laravel-companieshouse
+composer require ghazanfar/laravel-companies-house
 ```
 
 Now register the Service provider in `config/app.php`

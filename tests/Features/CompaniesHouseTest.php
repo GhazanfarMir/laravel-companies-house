@@ -38,7 +38,7 @@ class CompaniesHouseTest extends TestCase
         $response = $this->company->search('ebury');
 
         $content_type = $response->getHeaders()["Content-Type"][0];
-        
+
         $this->assertEquals('application/json', $content_type);
     }
 
@@ -56,8 +56,6 @@ class CompaniesHouseTest extends TestCase
         $this->assertEquals($response->getStatusCode(), 200);
 
         $this->assertEquals('application/json', $response->getHeaders()["Content-Type"][0]);
-
-        //$array = json_decode($response->getBody());
 
 
     }

@@ -2,9 +2,9 @@
 
 namespace Ghazanfar\CompaniesHouse;
 
+use Exception;
 use Ghazanfar\CompaniesHouse\Exceptions\ApiKeyException;
 use GuzzleHttp\Client;
-use Exception;
 
 class CompaniesHouse
 {
@@ -58,13 +58,13 @@ class CompaniesHouse
     public function search($company)
     {
 
-        /*$response = $this->client->request('GET', 'search/companies', array(
+        $params = array(
             'query' => array(
                 'q' => $company
             )
-        ));*/
-
-        $response = $response = $this->client->request('GET', 'https://api.companieshouse.gov.uk/search/companies?q=Ebury');
+        );
+        
+        $response = $this->client->request('GET', 'search/companies', $params);
 
         return $response;
     }
@@ -78,8 +78,7 @@ class CompaniesHouse
     public function searchByNumber($number)
     {
 
-        if(!empty($number) && $number!='')
-        {
+        if (!empty($number) && $number != '') {
             $response = $this->client->request('GET', 'company/' . $number);
 
             return $response;
