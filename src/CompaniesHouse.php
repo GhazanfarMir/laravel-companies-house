@@ -6,6 +6,10 @@ use Exception;
 use Ghazanfar\CompaniesHouse\Exceptions\ApiKeyException;
 use GuzzleHttp\Client;
 
+/**
+ * Class CompaniesHouse
+ * @package Ghazanfar\CompaniesHouse
+ */
 class CompaniesHouse
 {
 
@@ -66,7 +70,7 @@ class CompaniesHouse
         
         $response = $this->client->request('GET', 'search/companies', $params);
 
-        return $response->getBody();
+        return $this->data($response->getBody());
     }
 
     /**
@@ -81,7 +85,7 @@ class CompaniesHouse
         if (!empty($number) && $number != '') {
             $response = $this->client->request('GET', 'company/' . $number);
 
-            return $response->getBody();
+            return $this->data($response->getBody());
 
         } else {
 
@@ -89,6 +93,27 @@ class CompaniesHouse
 
         }
     }
+
+    /**
+     * extract data from the response
+     *
+     * @param $response
+     * @return array|mixed|null|object
+     * @throws Exception
+     */
+
+    private function data($response)
+    {
+
+        if(empty($response) || !is_object($response))
+        {
+            throw new \Exception('Invalid response to extract data from.' .
+                '');
+        }
+
+        return json_decode($response);
+    }
+
 
     /**
      * test method
