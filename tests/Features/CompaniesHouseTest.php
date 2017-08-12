@@ -18,7 +18,7 @@ class CompaniesHouseTest extends TestCase
     /**
      * BASE API
      */
-    const BASE_API = 'https://api.companieshouse.gov.uk/';
+    const BASE_URI = 'https://api.companieshouse.gov.uk/';
 
     /**
      * @var
@@ -43,7 +43,7 @@ class CompaniesHouseTest extends TestCase
     {
         $client = new Client([
             'auth' => [ self::API_KEY, ''],
-            'base_uri' => self::BASE_API
+            'base_uri' => self::BASE_URI
         ]);
 
         $response = $client->request('GET', 'search/companies', ['query' => ['q' => 'Ebury']]);
