@@ -28,7 +28,10 @@
         "laravel": {
             "providers": [
                 "Ghazanfar\\CompaniesHouse\\CompaniesHouseServiceProvider"
-            ]
+            ],
+            "aliases": {
+                "CompaniesHouse": "Ghazanfar\\CompaniesHouse\\Facades\\CompaniesHouse"
+            }
         }
     }
 }
