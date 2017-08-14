@@ -2,14 +2,15 @@
 
 namespace Ghazanfar\CompaniesHouse;
 
-use Exception;
 use Ghazanfar\CompaniesHouse\Exceptions\ApiKeyException;
 use GuzzleHttp\Client;
+
 
 /**
  * Class CompaniesHouse
  * @package Ghazanfar\CompaniesHouse
  */
+
 class CompaniesHouse
 {
 
@@ -48,7 +49,7 @@ class CompaniesHouse
 
         } else {
 
-            throw new ApiKeyException('CompaniesHouse API Key is required. Please visit https://developer.companieshouse.gov.uk/developer/applications');
+            throw new ApiKeyException('Missing Api Key: CompaniesHouse API Key is required. Please visit https://developer.companieshouse.gov.uk/developer/applications');
 
         }
 
@@ -62,21 +63,28 @@ class CompaniesHouse
     public function search($company)
     {
 
-        $params = array(
-            'query' => array(
-                'q' => $company
-            )
-        );
-        
-        $response = $this->client->request('GET', 'search/companies', $params);
+        if (!empty($company) && $company != '') {
 
-        return $this->data($response->getBody());
+            $params = array(
+                'query' => array(
+                    'q' => $company
+                )
+            );
+
+            $response = $this->client->request('GET', 'search/companies', $params);
+
+            return $this->response($response->getBody());
+
+        } else {
+
+            throw new \InvalidArgumentException('Missing Search Term: Company name can not be empty, you must provide a company name to search from Companies House.');
+        }
+
     }
 
     /**
      * @param $number
-     * @return mixed|\Psr\Http\Message\ResponseInterface
-     * @throws Exception
+     * @return array|mixed|null|object
      */
 
     public function searchByNumber($number)
@@ -85,11 +93,11 @@ class CompaniesHouse
         if (!empty($number) && $number != '') {
             $response = $this->client->request('GET', 'company/' . $number);
 
-            return $this->data($response->getBody());
+            return $this->response($response->getBody());
 
         } else {
 
-            throw new Exception('Company number can not be empty. You must provide a company number to get profile');
+            throw new \InvalidArgumentException('Missing Search Term: Company number can not be empty, you must provide a company number to get profile.');
 
         }
     }
@@ -99,21 +107,18 @@ class CompaniesHouse
      *
      * @param $response
      * @return array|mixed|null|object
-     * @throws Exception
+     * @throws \Exception
      */
 
-    private function data($response)
+    private function response($response)
     {
 
-        if(empty($response) || !is_object($response))
-        {
-            throw new \Exception('Invalid response to extract data from.' .
-                '');
+        if (empty($response) || !is_object($response)) {
+            throw new \Exception('Invalid response to extract data from.');
         }
 
         return json_decode($response);
     }
-
 
     /**
      * test method
