@@ -33,7 +33,7 @@ class CompaniesHouseTest extends TestCase
     {
         parent::setUp();
 
-        $this->company = new CompaniesHouse(self::API_KEY);
+        $this->company = new CompaniesHouse(self::API_KEY, self::BASE_URI);
     }
 
     /**
