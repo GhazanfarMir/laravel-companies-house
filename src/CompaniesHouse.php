@@ -61,7 +61,7 @@ class CompaniesHouse
         // initialise client
 
         $this->client = new Client(array(
-            'base_uri' => $this->base_api,
+            'base_uri' => $this->base_uri,
             'auth' => array($key, '')
         ));
 
