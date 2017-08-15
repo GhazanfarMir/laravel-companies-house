@@ -29,6 +29,12 @@ And also add the alias to the same file.
 ],
 ```
 
+## How to use?
+
+```
+Put instructions on how to use the package
+```
+
 ## Configuration
 
 ### Obtaining the CompaniesHouse API Key
