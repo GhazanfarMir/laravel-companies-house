@@ -24,7 +24,7 @@ class CompaniesHouseServiceProvider extends ServiceProvider
     {
 
         $this->app->singleton('companieshouse', function ($app) {
-            return new CompaniesHouse(config('companies.key'));
+            return new CompaniesHouse(config('companies.key'), config('companies.base_uri'));
         });
 
     }

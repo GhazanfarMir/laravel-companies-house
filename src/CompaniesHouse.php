@@ -2,6 +2,7 @@
 
 namespace Ghazanfar\CompaniesHouse;
 
+use Ghazanfar\CompaniesHouse\Exceptions\ApiBaseUriException;
 use Ghazanfar\CompaniesHouse\Exceptions\ApiKeyException;
 use GuzzleHttp\Client;
 
@@ -10,7 +11,6 @@ use GuzzleHttp\Client;
  * Class CompaniesHouse
  * @package Ghazanfar\CompaniesHouse
  */
-
 class CompaniesHouse
 {
 
@@ -18,10 +18,12 @@ class CompaniesHouse
      * @var
      */
     public $client;
+
     /**
      * @var
      */
-    protected $base_api = 'https://api.companieshouse.gov.uk/';
+    protected $base_uri = 'https://api.companieshouse.gov.uk/';
+
     /**
      * @var
      */
@@ -30,28 +32,39 @@ class CompaniesHouse
     /**
      * CompaniesHouse constructor.
      * @param $key
+     * @param $base_uri
+     * @throws ApiBaseUriException
      * @throws ApiKeyException
      */
 
-    public function __construct($key)
+    public function __construct($key, $base_uri)
     {
 
-        if (!empty($key) && $key != '') {
-            $this->key = $key;
 
-            $this->client = new Client(array(
-                'base_uri' => $this->base_api,
-                'auth' => array(
-                    $key,
-                    ''
-                )
-            ));
+        if (empty($key) || $key == '') {
 
-        } else {
-
-            throw new ApiKeyException('Missing Api Key: CompaniesHouse API Key is required. Please visit https://developer.companieshouse.gov.uk/developer/applications');
+            throw new ApiKeyException('Missing ApiKey: CompaniesHouse API Key is required. Please visit https://developer.companieshouse.gov.uk/developer/applications');
 
         }
+
+        if (empty($base_uri) || $base_uri == '') {
+
+            throw new ApiBaseUriException('Missing ApiBaseUri: CompaniesHouse Base Uri is required. Please visit https://developer.companieshouse.gov.uk/developer/applications');
+
+        }
+
+
+        $this->base_uri = $base_uri;
+
+        $this->key = $key;
+
+        // initialise client
+
+        $this->client = new Client(array(
+            'base_uri' => $this->base_api,
+            'auth' => array($key, '')
+        ));
+
 
     }
 
@@ -83,6 +96,24 @@ class CompaniesHouse
     }
 
     /**
+     * extract data from the response
+     *
+     * @param $response
+     * @return array|mixed|null|object
+     * @throws \Exception
+     */
+
+    private function response($response)
+    {
+
+        if (empty($response) || !is_object($response)) {
+            throw new \Exception('Invalid response to extract data from.');
+        }
+
+        return json_decode($response);
+    }
+
+    /**
      * @param $number
      * @return array|mixed|null|object
      */
@@ -100,24 +131,6 @@ class CompaniesHouse
             throw new \InvalidArgumentException('Missing Search Term: Company number can not be empty, you must provide a company number to get profile.');
 
         }
-    }
-
-    /**
-     * extract data from the response
-     *
-     * @param $response
-     * @return array|mixed|null|object
-     * @throws \Exception
-     */
-
-    private function response($response)
-    {
-
-        if (empty($response) || !is_object($response)) {
-            throw new \Exception('Invalid response to extract data from.');
-        }
-
-        return json_decode($response);
     }
 
     /**

@@ -15,7 +15,7 @@ return [
      * Endpoint for the CompaniesHouse API
      */
 
-    'base_api' => 'https://api.companieshouse.gov.uk/',
+    'base_uri' => 'https://api.companieshouse.gov.uk/',
 
 
     /**
