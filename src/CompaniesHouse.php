@@ -2,8 +2,12 @@
 
 namespace Ghazanfar\CompaniesHouse;
 
+use Ghazanfar\CompaniesHouse\Exceptions\InvalidResourceException;
 use Ghazanfar\CompaniesHouse\Exceptions\ApiBaseUriException;
 use Ghazanfar\CompaniesHouse\Exceptions\ApiKeyException;
+use Ghazanfar\CompaniesHouse\Resources\Documents;
+use Ghazanfar\CompaniesHouse\Resources\Officers;
+use Ghazanfar\CompaniesHouse\Resources\Company;
 use GuzzleHttp\Client;
 
 
@@ -58,10 +62,10 @@ class CompaniesHouse
 
         $this->key = $key;
 
-        // initialise client
+        // initialise guzzle/client
 
         $this->client = new Client(array(
-            'base_uri' => $this->base_uri,
+            'base_uri' => $base_uri,
             'auth' => array($key, '')
         ));
 
@@ -69,76 +73,31 @@ class CompaniesHouse
     }
 
     /**
-     * @param $company
-     * @return \Psr\Http\Message\StreamInterface
+     * @param $resource
+     * @return Company
+     * @throws InvalidResourceException
      */
 
-    public function search($company)
+    public function search($resource)
     {
 
-        if (!empty($company) && $company != '') {
+        switch ($resource) {
 
-            $params = array(
-                'query' => array(
-                    'q' => $company
-                )
-            );
+            case 'company':
+                return new Company($this->client);
+                break;
 
-            $response = $this->client->request('GET', 'search/companies', $params);
+            case 'officers':
+                return new Officers($this->client);
+                break;
 
-            return $this->response($response->getBody());
+            case 'documents':
+                return new Documents($this->client);
+                break;
 
-        } else {
-
-            throw new \InvalidArgumentException('Missing Search Term: Company name can not be empty, you must provide a company name to search from Companies House.');
+            default:
+                throw new InvalidResourceException('Invalid resource. You must provide only valid resource type.');
         }
 
-    }
-
-    /**
-     * extract data from the response
-     *
-     * @param $response
-     * @return array|mixed|null|object
-     * @throws \Exception
-     */
-
-    private function response($response)
-    {
-
-        if (empty($response) || !is_object($response)) {
-            throw new \Exception('Invalid response to extract data from.');
-        }
-
-        return json_decode($response);
-    }
-
-    /**
-     * @param $number
-     * @return array|mixed|null|object
-     */
-
-    public function searchByNumber($number)
-    {
-
-        if (!empty($number) && $number != '') {
-            $response = $this->client->request('GET', 'company/' . $number);
-
-            return $this->response($response->getBody());
-
-        } else {
-
-            throw new \InvalidArgumentException('Missing Search Term: Company number can not be empty, you must provide a company number to get profile.');
-
-        }
-    }
-
-    /**
-     * test method
-     */
-
-    public function test()
-    {
-        var_dump('This is the test message');
     }
 }
