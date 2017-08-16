@@ -1,8 +1,8 @@
 <?php
 
-namespace Ghazanfar\CompaniesHouse\Tests\Features;
+namespace Ghazanfar\CompaniesHouseApi\Tests\Features;
 
-use Ghazanfar\CompaniesHouse\CompaniesHouse;
+use Ghazanfar\CompaniesHouseApi\CompaniesHouseApi;
 use PHPUnit\Framework\TestCase;
 use GuzzleHttp\Client;
 
@@ -33,7 +33,12 @@ class CompaniesHouseTest extends TestCase
     {
         parent::setUp();
 
-        $this->company = new CompaniesHouse(self::API_KEY, self::BASE_URI);
+        $this->company = new CompaniesHouseApi(self::API_KEY, self::BASE_URI);
+
+        $this->client = new Client([
+            'auth' => [ self::API_KEY, ''],
+            'base_uri' => self::BASE_URI
+        ]);
     }
 
     /**
@@ -41,12 +46,8 @@ class CompaniesHouseTest extends TestCase
      */
     public function search_content_type_is_json()
     {
-        $client = new Client([
-            'auth' => [ self::API_KEY, ''],
-            'base_uri' => self::BASE_URI
-        ]);
 
-        //$response = $client->request('GET', 'search/companies', ['query' => ['q' => 'Ebury']]);
+        //$response = $this->client->request('GET', 'search/companies', ['query' => ['q' => 'Ebury']]);
 
         //$content_type = $response->getHeaders()["Content-Type"][0];
 

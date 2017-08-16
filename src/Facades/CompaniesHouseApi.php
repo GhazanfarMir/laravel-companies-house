@@ -1,10 +1,10 @@
 <?php
 
-namespace Ghazanfar\CompaniesHouse\Facades;
+namespace Ghazanfar\CompaniesHouseApi\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-class CompaniesHouse extends Facade
+class CompaniesHouseApi extends Facade
 {
 
     /**

@@ -20,17 +20,17 @@
     },
     "autoload": {
         "psr-4": {
-            "Ghazanfar\\CompaniesHouse\\": "src/"
+            "Ghazanfar\\CompaniesHouseApi\\": "src/"
         }
     },
     "minimum-stability": "stable",
     "extra": {
         "laravel": {
             "providers": [
-                "Ghazanfar\\CompaniesHouse\\CompaniesHouseServiceProvider"
+                "Ghazanfar\\CompaniesHouseApi\\CompaniesHouseApiServiceProvider"
             ],
             "aliases": {
-                "CompaniesHouse": "Ghazanfar\\CompaniesHouse\\Facades\\CompaniesHouse"
+                "CompaniesHouse": "Ghazanfar\\CompaniesHouseApi\\Facades\\CompaniesHouseApi"
             }
         }
     }

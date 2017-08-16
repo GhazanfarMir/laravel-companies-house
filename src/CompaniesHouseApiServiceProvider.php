@@ -1,10 +1,10 @@
 <?php
 
-namespace Ghazanfar\CompaniesHouse;
+namespace Ghazanfar\CompaniesHouseApi;
 
 use Illuminate\Support\ServiceProvider;
 
-class CompaniesHouseServiceProvider extends ServiceProvider
+class CompaniesHouseApiServiceProvider extends ServiceProvider
 {
 
     /**
@@ -24,7 +24,7 @@ class CompaniesHouseServiceProvider extends ServiceProvider
     {
 
         $this->app->singleton('companieshouse', function ($app) {
-            return new CompaniesHouse(config('companies.key'), config('companies.base_uri'));
+            return new CompaniesHouseApi(config('companies.key'), config('companies.base_uri'));
         });
 
     }

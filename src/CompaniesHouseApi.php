@@ -1,13 +1,13 @@
 <?php
 
-namespace Ghazanfar\CompaniesHouse;
+namespace Ghazanfar\CompaniesHouseApi;
 
-use Ghazanfar\CompaniesHouse\Exceptions\InvalidResourceException;
-use Ghazanfar\CompaniesHouse\Exceptions\ApiBaseUriException;
-use Ghazanfar\CompaniesHouse\Exceptions\ApiKeyException;
-use Ghazanfar\CompaniesHouse\Resources\Documents;
-use Ghazanfar\CompaniesHouse\Resources\Officers;
-use Ghazanfar\CompaniesHouse\Resources\Company;
+use Ghazanfar\CompaniesHouseApi\Exceptions\InvalidResourceException;
+use Ghazanfar\CompaniesHouseApi\Exceptions\ApiBaseUriException;
+use Ghazanfar\CompaniesHouseApi\Exceptions\ApiKeyException;
+use Ghazanfar\CompaniesHouseApi\Resources\Documents;
+use Ghazanfar\CompaniesHouseApi\Resources\Officers;
+use Ghazanfar\CompaniesHouseApi\Resources\Company;
 use GuzzleHttp\Client;
 
 
@@ -15,7 +15,7 @@ use GuzzleHttp\Client;
  * Class CompaniesHouse
  * @package Ghazanfar\CompaniesHouse
  */
-class CompaniesHouse
+class CompaniesHouseApi
 {
 
     /**

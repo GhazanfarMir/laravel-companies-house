@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Ghazanfar\CompaniesHouse\Resources;
+namespace Ghazanfar\CompaniesHouseApi\Resources;
 
 
 class Officers extends ResourcesBase

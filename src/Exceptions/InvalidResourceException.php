@@ -1,6 +1,6 @@
 <?php
 
-namespace Ghazanfar\CompaniesHouse\Exceptions;
+namespace Ghazanfar\CompaniesHouseApi\Exceptions;
 
 class InvalidResourceException extends \Exception
 {

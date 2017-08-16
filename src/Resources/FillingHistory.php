@@ -1,6 +1,6 @@
 <?php
 
-namespace Ghazanfar\CompaniesHouse\Resources;
+namespace Ghazanfar\CompaniesHouseApi\Resources;
 
 
 class FillingHistory extends ResourcesBase
