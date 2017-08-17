@@ -10,6 +10,25 @@ namespace Ghazanfar\CompaniesHouseApi\Resources;
 class Company extends ResourcesBase
 {
 
+    public function all($search)
+    {
+        if(!empty($search) && $search!='')
+        {
+            $params = array(
+                'query' => array(
+                    'q' => $search
+                )
+            );
+
+            $response = $this->client->request('GET', 'search/', $params);
+
+            return $this->response($response->getBody());
+        } else {
+
+            throw new InvalidArgumentException('Invalid Argument: You must provide valid company name to search for.');
+        }
+    }
+
     /**
      * @param $name
      * @return array|mixed|null|object
@@ -17,11 +36,11 @@ class Company extends ResourcesBase
     public function byName($name)
     {
 
-        if(!empty($name) && $name!='')
+        if(!empty($search) && $search!='')
         {
             $params = array(
                 'query' => array(
-                    'q' => $name
+                    'q' => $search
                 )
             );
 

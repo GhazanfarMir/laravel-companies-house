@@ -17,6 +17,7 @@ try {
 
     //$api = new CompaniesHouse();
 
+    $all = $api->search('company')->all('Ebury Partners');
     $companies = $api->search('company')->byName('Ebury Partners');
     $company = $api->search('company')->byNumber('07086058');
 
@@ -26,6 +27,10 @@ try {
 
     echo "<pre>";
     print_r($company);
+    echo "</pre>";
+
+    echo "<pre>";
+    print_r($all);
     echo "</pre>";
 
 } catch (Exception $e){
