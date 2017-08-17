@@ -1,6 +1,9 @@
 # Laravel Companies House [![Build Status](https://travis-ci.org/ghazanfarmir/laravel-companies-house.svg?branch=master)](https://travis-ci.org/ghazanfarmir/laravel-companies-house)
 
-Laravel package to access CompaniesHouse API within Laravel application
+This Laravel Package implements an API client for the Companies House REST API. It can be used to look up information about companies registered in the United Kingdom.
+As of July 2016, this API is described by Companies House as a "beta service."
+More information about this free API can be found
+[on the Companies House API website](https://developer.companieshouse.gov.uk/api/docs/index.html).
 
 **Please note, this package is still under development and isn't ready for production yet. Once ready, I will remove this warning; so keep looking at this space.**
 
