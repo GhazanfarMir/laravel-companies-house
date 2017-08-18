@@ -9,10 +9,15 @@ class Officers extends ResourcesBase
 
     /**
      * @param $name
+     * @param int $disqualified_flag
      * @return array|mixed|null|object
      */
-    public function byName($name)
+    public function byName($name, $disqualified_flag=0)
     {
+
+        $endpoint = 'search/officers';
+
+        if($disqualified_flag) $endpoint = 'search/disqualified-officers';
 
         if(!empty($name))
         {
@@ -22,7 +27,7 @@ class Officers extends ResourcesBase
                 )
             );
 
-            $response = $this->client->request('GET', 'search/officers', $params);
+            $response = $this->client->request('GET', $endpoint, $params);
 
             return $this->response($response->getBody());
 

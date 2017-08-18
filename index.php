@@ -40,6 +40,9 @@ try {
     // Search Officers
     print_r('Search Officers: ' . $officers->items[0]->title . PHP_EOL);
 
+    // Search Disqualified Officers
+    print_r('Search Disqualified Officers: ' . $api->search('officers')->byName('Ghazanfar Mir')->items[0]->title . PHP_EOL);
+
 } catch (Exception $e) {
     echo $e->getMessage();
 }
