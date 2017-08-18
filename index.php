@@ -2,8 +2,6 @@
 
 
 use Ghazanfar\CompaniesHouseApi\CompaniesHouseApi;
-use GuzzleHttp\Client;
-
 
 include 'vendor/autoload.php';
 
@@ -15,24 +13,28 @@ try {
 
     $api = new CompaniesHouseApi($api_key, $base_uri);
 
-    //$api = new CompaniesHouse();
+    $all = $api->search('company')->all('Ebury Partners', 1, 2);
 
-    $all = $api->search('company')->all('Ebury Partners');
     $companies = $api->search('company')->byName('Ebury Partners');
+
     $company = $api->search('company')->byNumber('07086058');
 
-    echo "<pre>";
-    print_r($companies->items[0]);
-    echo "</pre>";
+    $officers = $api->search('officers')->byName('Usman Mehr');
 
-    echo "<pre>";
-    print_r($company);
-    echo "</pre>";
+    // Search all
+    print_r('Search All: ' . $all->items[0]->address_snippet . PHP_EOL);
 
-    echo "<pre>";
-    print_r($all);
-    echo "</pre>";
+    // Search by name
+    print_r('Search Company byName: ' . $companies->items[0]->address_snippet . PHP_EOL);
 
-} catch (Exception $e){
+    // Search by number
+    print_r('Search Company byNumber: ' . $company->company_name . PHP_EOL);
+
+    // Search Officers
+    print_r('Search Officers: ' . $officers->items[0]->title . PHP_EOL);
+
+
+
+} catch (Exception $e) {
     echo $e->getMessage();
 }
