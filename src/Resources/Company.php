@@ -10,13 +10,39 @@ namespace Ghazanfar\CompaniesHouseApi\Resources;
 class Company extends ResourcesBase
 {
 
-    public function all($search)
+    /**
+     * Company name
+     * @var
+     */
+    protected $name;
+
+    /**
+     * Company number
+     * @var
+     */
+    protected $number;
+
+    /**
+     * Company officers
+     * @var
+     */
+    protected $officers;
+
+    /**
+     * @param $search
+     * @param int $items_per_page
+     * @param int $start_index
+     * @return array|mixed|null|object
+     */
+
+    public function all($search, $items_per_page = 20, $start_index = 0)
     {
-        if(!empty($search) && $search!='')
-        {
+        if (!empty($search)) {
             $params = array(
                 'query' => array(
-                    'q' => $search
+                    'q' => $search,
+                    'items_per_page' => $items_per_page,
+                    'start_index' => $start_index
                 )
             );
 
@@ -25,22 +51,25 @@ class Company extends ResourcesBase
             return $this->response($response->getBody());
         } else {
 
-            throw new InvalidArgumentException('Invalid Argument: You must provide valid company name to search for.');
+            throw new \InvalidArgumentException('Invalid Argument: You must provide valid company name to search for.');
         }
     }
 
     /**
      * @param $name
+     * @param int $items_per_page
+     * @param int $start_index
      * @return array|mixed|null|object
      */
-    public function byName($name)
+    public function byName($name, $items_per_page = 20, $start_index = 0)
     {
 
-        if(!empty($search) && $search!='')
-        {
+        if (!empty($name)) {
             $params = array(
                 'query' => array(
-                    'q' => $search
+                    'q' => $name,
+                    'items_per_page' => $items_per_page,
+                    'start_index' => $start_index
                 )
             );
 
@@ -49,7 +78,7 @@ class Company extends ResourcesBase
             return $this->response($response->getBody());
         } else {
 
-            throw new InvalidArgumentException('Invalid Argument: You must provide valid company name to search for.');
+            throw new \InvalidArgumentException('Invalid Argument: You must provide valid company name to search for.');
         }
 
     }
@@ -62,7 +91,7 @@ class Company extends ResourcesBase
     {
 
 
-        if (!empty($number) && $number != '') {
+        if (!empty($number)) {
             $response = $this->client->request('GET', 'company/' . $number);
 
             return $this->response($response->getBody());

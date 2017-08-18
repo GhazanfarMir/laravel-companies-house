@@ -23,7 +23,7 @@ class CompaniesHouseTest extends TestCase
     /**
      * @var
      */
-    protected $company;
+    protected $api;
 
 
     /**
@@ -33,7 +33,7 @@ class CompaniesHouseTest extends TestCase
     {
         parent::setUp();
 
-        $this->company = new CompaniesHouseApi(self::API_KEY, self::BASE_URI);
+        $this->api = new CompaniesHouseApi(self::API_KEY, self::BASE_URI);
 
         $this->client = new Client([
             'auth' => [ self::API_KEY, ''],
@@ -65,7 +65,7 @@ class CompaniesHouseTest extends TestCase
 
         $name = 'ebury partners';
 
-        //$companies = $this->company->search($name);
+        //$companies = $this->api->search('company')->byName($name);
 
         $this->assertTrue(true);
     }
@@ -78,9 +78,23 @@ class CompaniesHouseTest extends TestCase
 
         $number = '07039469';
 
-        //$company = $this->company->searchByNumber($number);
+        //$company = $this->api->search('company')->ByNumber($number);
 
         $this->assertTrue(true);
+    }
+
+    /**
+     * @test
+     */
+    public function search_officers_by_name()
+    {
+
+        $officer = 'Ghazanfar';
+        $officers = $this->api->search('officers')->byName($officer);
+        //$this->assertContains($officers->items[0]->title, $officers);
+
+        $this->assertTrue(true);
+
     }
 
 }
