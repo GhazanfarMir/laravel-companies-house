@@ -20,13 +20,19 @@ try {
 
     $company = $api->search('company')->byNumber('07086058');
 
-    $officers = $api->search('officers')->byName();
+    $officers = $api->search('officers')->byName('Ghazanfar Mir');
 
     // Search all
     print_r('Search All: ' . $all->items[0]->address_snippet . PHP_EOL);
 
     // Search by name
     print_r('Search Company byName: ' . $companies->items[0]->address_snippet . PHP_EOL);
+
+    // Search by number
+    print_r('Search Company byNumber: ' . $company->company_name . PHP_EOL);
+
+    // Search Officers
+    print_r('Search Officers: ' . $officers->items[0]->title . PHP_EOL);
 
     // Search by number
     print_r('Search Company byNumber: ' . $company->company_name . PHP_EOL);
