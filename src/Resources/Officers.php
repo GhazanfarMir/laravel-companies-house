@@ -10,9 +10,11 @@ class Officers extends ResourcesBase
     /**
      * @param $name
      * @param int $disqualified_flag
+     * @param int $items_per_page
+     * @param int $start_index
      * @return array|mixed|null|object
      */
-    public function byName($name, $disqualified_flag=0)
+    public function byName($name, $disqualified_flag=0, $items_per_page=20, $start_index=0)
     {
 
         $endpoint = 'search/officers';
@@ -23,7 +25,9 @@ class Officers extends ResourcesBase
         {
             $params = array(
                 'query' => array(
-                    'q' => $name
+                    'q' => $name,
+                    'items_per_page' => $items_per_page,
+                    'start_index' => $start_index
                 )
             );
 
