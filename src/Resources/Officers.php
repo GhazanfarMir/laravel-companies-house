@@ -1,8 +1,11 @@
 <?php
 
-
 namespace Ghazanfar\CompaniesHouseApi\Resources;
 
+/**
+ * Class Officers
+ * @package Ghazanfar\CompaniesHouseApi\Resources
+ */
 
 class Officers extends ResourcesBase
 {
