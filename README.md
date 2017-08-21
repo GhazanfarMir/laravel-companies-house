@@ -20,6 +20,7 @@ Now register the Service provider in `config/app.php`
 ```
 'providers' => [
     ...
+    
     Ghazanfar\CompaniesHouse\CompaniesHouseServiceProvider::class,
 ],
 ```
@@ -28,6 +29,7 @@ And also add the alias to the same file.
 ```
 'aliases' => [
     ...
+    
     'CompaniesHouse' => Ghazanfar\CompaniesHouse\Facades\CompaniesHouse::class,
 ],
 ```
@@ -37,6 +39,23 @@ And also add the alias to the same file.
 ```
 Put instructions on how to use the package
 ```
+
+```
+CompaniesHouseApi::company()->search('Company name'); // search companies by name
+```
+
+```
+CompaniesHouseApi::company()->find('company number'); // find companies by number
+```
+
+```
+CompaniesHouseApi::officers()->search('Mir'); // search officers by name
+```
+
+```
+CompaniesHouseApi::officers()->disqualified()->search('Mir'); // search disqualified officers
+```
+
 
 ## Configuration
 
