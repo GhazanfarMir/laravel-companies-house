@@ -73,12 +73,37 @@ class CompaniesHouseApi
     }
 
     /**
+     * @return Company
+     */
+
+    public function company()
+    {
+        return new Company($this->client);
+    }
+
+    /**
+     * @return Officers
+     */
+    public function officers()
+    {
+        return new Officers($this->client);
+    }
+
+    /**
+     * @return Documents
+     */
+    public function documents()
+    {
+        return new Documents($this->client);
+    }
+
+    /**
      * @param $resource
      * @return Company
      * @throws InvalidResourceException
      */
 
-    public function search($resource)
+    /*public function search($resource)
     {
 
         switch ($resource) {
@@ -99,5 +124,5 @@ class CompaniesHouseApi
                 throw new InvalidResourceException('Invalid resource. You must provide only valid resource type.');
         }
 
-    }
+    }*/
 }

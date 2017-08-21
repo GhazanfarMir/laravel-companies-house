@@ -11,21 +11,44 @@ class Officers extends ResourcesBase
 {
 
     /**
+     * @var int
+     */
+    protected $disqualified_flag = false;
+
+    /**
+     * @var
+     */
+    protected $endpoint = 'search/officers';
+
+
+    /**
+     * @return $this
+     */
+    public function disqualified()
+    {
+
+        $this->disqualified_flag = true;
+
+        return $this;
+    }
+
+    /**
      * @param $name
-     * @param int $disqualified_flag
      * @param int $items_per_page
      * @param int $start_index
      * @return array|mixed|null|object
+     * @internal param $disqualified_flag
      */
-    public function byName($name, $disqualified_flag=0, $items_per_page=20, $start_index=0)
+    public function search($name, $items_per_page = 20, $start_index = 0)
     {
 
-        $endpoint = 'search/officers';
+        // check if the disqualified flag is set
 
-        if($disqualified_flag) $endpoint = 'search/disqualified-officers';
+        if ($this->disqualified_flag) {
+            $this->endpoint = 'search/disqualified-officers';
+        }
 
-        if(!empty($name))
-        {
+        if (!empty($name)) {
             $params = array(
                 'query' => array(
                     'q' => $name,
@@ -34,7 +57,7 @@ class Officers extends ResourcesBase
                 )
             );
 
-            $response = $this->client->request('GET', $endpoint, $params);
+            $response = $this->client->request('GET', $this->endpoint, $params);
 
             return $this->response($response->getBody());
 

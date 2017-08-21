@@ -2,6 +2,8 @@
 
 namespace Ghazanfar\CompaniesHouseApi\Resources;
 
+use GuzzleHttp\Client;
+
 /**
  * Class ResourcesBase
  * @package Ghazanfar\CompaniesHouse\Resources
@@ -16,10 +18,10 @@ class ResourcesBase
     protected $client;
 
     /**
-     * Company constructor.
-     * @param $client
+     * ResourcesBase constructor.
+     * @param Client $client
      */
-    public function __construct($client)
+    public function __construct(Client $client)
     {
 
         $this->client = $client;
