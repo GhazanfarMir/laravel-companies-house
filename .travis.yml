@@ -1,11 +1,13 @@
-sudo: required
+sudo: false
 
 language: php
 
 php:
  - nightly
+ - 7.0
+ - hhvm
 
-dist: precise
+dist: trusty
 
 os: linux
 

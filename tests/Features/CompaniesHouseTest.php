@@ -71,7 +71,7 @@ class CompaniesHouseTest extends TestCase
 
         $name = 'ebury partners';
 
-        $companies = $this->api->company()->search($name);
+        //$companies = $this->api->company()->search($name);
 
         /*$params = array(
             'query' => array(
