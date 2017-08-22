@@ -3,8 +3,8 @@
 namespace Ghazanfar\CompaniesHouseApi\Tests\Features;
 
 use Ghazanfar\CompaniesHouseApi\CompaniesHouseApi;
-use PHPUnit\Framework\TestCase;
 use GuzzleHttp\Client;
+use PHPUnit\Framework\TestCase;
 
 class CompaniesHouseTest extends TestCase
 {
@@ -23,6 +23,12 @@ class CompaniesHouseTest extends TestCase
     /**
      * @var
      */
+    protected $client;
+
+
+    /**
+     * @var
+     */
     protected $api;
 
 
@@ -34,7 +40,7 @@ class CompaniesHouseTest extends TestCase
         parent::setUp();
 
         $this->client = new Client([
-            'auth' => [ self::API_KEY, ''],
+            'auth' => [self::API_KEY, ''],
             'base_uri' => self::BASE_URI
         ]);
 
@@ -47,11 +53,11 @@ class CompaniesHouseTest extends TestCase
     public function search_content_type_is_json()
     {
 
-        /*$response = $this->client->request('GET', 'search/companies', ['query' => ['q' => 'Ebury']]);
+        $response = $this->client->request('GET', 'search/companies', ['query' => ['q' => 'Ebury']]);
 
         $content_type = $response->getHeaders()["Content-Type"][0];
 
-        $this->assertEquals('application/json', $content_type);*/
+        $this->assertEquals('application/json', $content_type);
 
         $this->assertTrue(true);
     }
