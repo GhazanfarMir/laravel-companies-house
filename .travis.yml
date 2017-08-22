@@ -3,17 +3,15 @@ sudo: required
 language: php
 
 php:
- - nightly
-
-dist: trusty
-
-os: linux
+  - 7.0
+  - 7.1
 
 before_install:
   - sudo apt-get -y install git zip php5-cli php5-curl
+  - sudo apt-get install libcurl4-openssl-dev
 
 before_script:
   - composer self-update
-  - composer install --prefer-source --no-interaction --dev
+  - - composer install --prefer-source --no-interaction --dev
 
 script: phpunit
