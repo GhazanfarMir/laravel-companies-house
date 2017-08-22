@@ -69,13 +69,25 @@ class CompaniesHouseTest extends TestCase
     public function search_by_company_name()
     {
 
-        /*$name = 'ebury partners';
+        $name = 'ebury partners';
 
-        $companies = $this->api->company()->search($name);
+        //$companies = $this->api->company()->search($name);
 
-        $this->assertArrayHasKey('address_snippet', (array) $companies->items[0]);*/
+        $params = array(
+            'query' => array(
+                'q' => $name,
+                'items_per_page' => 20,
+                'start_index' => 0
+            )
+        );
 
-        $this->assertTrue(true);
+        $response = $this->client->request('GET', 'search/companies', $params);
+
+        $companies = json_decode($response->getBody());
+
+        $this->assertArrayHasKey('address_snippet', (array) $companies->items[0]);
+
+        //$this->assertTrue(true);
 
     }
 
