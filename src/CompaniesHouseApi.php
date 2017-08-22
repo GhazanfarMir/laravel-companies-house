@@ -2,9 +2,6 @@
 
 namespace Ghazanfar\CompaniesHouseApi;
 
-use Ghazanfar\CompaniesHouseApi\Exceptions\InvalidResourceException;
-use Ghazanfar\CompaniesHouseApi\Exceptions\ApiBaseUriException;
-use Ghazanfar\CompaniesHouseApi\Exceptions\ApiKeyException;
 use Ghazanfar\CompaniesHouseApi\Resources\Documents;
 use Ghazanfar\CompaniesHouseApi\Resources\Officers;
 use Ghazanfar\CompaniesHouseApi\Resources\Company;
@@ -34,42 +31,13 @@ class CompaniesHouseApi
     protected $key;
 
     /**
-     * CompaniesHouse constructor.
-     * @param $key
-     * @param $base_uri
-     * @throws ApiBaseUriException
-     * @throws ApiKeyException
+     * CompaniesHouseApi constructor.
+     * @param Client $client
      */
 
-    public function __construct($key, $base_uri)
+    public function __construct(Client $client)
     {
-
-
-        if (empty($key) || $key == '') {
-
-            throw new ApiKeyException('Missing ApiKey: CompaniesHouse API Key is required. Please visit https://developer.companieshouse.gov.uk/developer/applications');
-
-        }
-
-        if (empty($base_uri) || $base_uri == '') {
-
-            throw new ApiBaseUriException('Missing ApiBaseUri: CompaniesHouse Base Uri is required. Please visit https://developer.companieshouse.gov.uk/developer/applications');
-
-        }
-
-
-        $this->base_uri = $base_uri;
-
-        $this->key = $key;
-
-        // initialise guzzle/client
-
-        $this->client = new Client(array(
-            'base_uri' => $base_uri,
-            'auth' => array($key, '')
-        ));
-
-
+        $this->client = $client;
     }
 
     /**

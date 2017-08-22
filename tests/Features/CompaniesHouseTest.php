@@ -33,12 +33,12 @@ class CompaniesHouseTest extends TestCase
     {
         parent::setUp();
 
-        $this->api = new CompaniesHouseApi(self::API_KEY, self::BASE_URI);
-
         $this->client = new Client([
             'auth' => [ self::API_KEY, ''],
             'base_uri' => self::BASE_URI
         ]);
+
+        $this->api = new CompaniesHouseApi($this->client);
     }
 
     /**

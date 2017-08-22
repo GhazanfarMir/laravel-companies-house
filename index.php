@@ -1,8 +1,9 @@
 <?php
 
-error_reporting(0);
+//error_reporting(0);
 
 use Ghazanfar\CompaniesHouseApi\CompaniesHouseApi;
+use GuzzleHttp\Client;
 
 include 'vendor/autoload.php';
 
@@ -12,15 +13,20 @@ try {
 
     $api_key = 'IvSp6uE13FPbE8iDPx6Yey9aQ64jH3Cvm18eAE_N';
 
-    $api = new CompaniesHouseApi($api_key, $base_uri);
+    $client = new Client([
+        'auth' => [ $api_key, ''],
+        'base_uri' => $base_uri
+    ]);
 
-    $all = $api->search('company')->all('Ebury Partners', 1, 2);
+    $api = new CompaniesHouseApi($client);
 
-    $companies = $api->search('company')->byName('Ebury Partners');
+    $all = $api->company()->searchAll('Ebury Partners', 1, 2);
 
-    $company = $api->search('company')->byNumber('07086058');
+    $companies = $api->company()->search('Ebury Partners');
 
-    $officers = $api->search('officers')->byName('Ghazanfar Mir');
+    $company = $api->company()->find('07086058');
+
+    $officers = $api->officers()->search('Mir');
 
     // Search all
     print_r('Search All: ' . $all->items[0]->address_snippet . PHP_EOL);
@@ -41,7 +47,7 @@ try {
     print_r('Search Officers: ' . $officers->items[0]->title . PHP_EOL);
 
     // Search Disqualified Officers
-    print_r('Search Disqualified Officers: ' . $api->search('officers')->byName('Ghazanfar Mir')->items[0]->title . PHP_EOL);
+    print_r('Search Disqualified Officers: ' . $api->officers()->disqualified()->search('Ghazanfar')->items[0]->title . PHP_EOL);
 
 } catch (Exception $e) {
     echo $e->getMessage();
