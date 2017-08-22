@@ -1,14 +1,16 @@
 sudo: required
 
-dist: trusty
-
 language: php
 
 php:
  - nightly
 
+dist: precise
+
+os: linux
+
 before_script:
   - composer self-update
   - composer install --prefer-source --no-interaction --dev
 
-script: phpunit
+script: php
