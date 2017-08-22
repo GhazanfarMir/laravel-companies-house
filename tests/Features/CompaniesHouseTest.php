@@ -71,7 +71,7 @@ class CompaniesHouseTest extends TestCase
 
         $name = 'ebury partners';
 
-        //$companies = $this->api->company()->search($name);
+        $companies = $this->api->company()->search($name);
 
         /*$params = array(
             'query' => array(
@@ -83,9 +83,9 @@ class CompaniesHouseTest extends TestCase
 
         $response = $this->client->request('GET', 'search/companies', $params);
 
-        $companies = json_decode($response->getBody());
+        $companies = json_decode($response->getBody());*/
 
-        $this->assertArrayHasKey('address_snippet', (array) $companies->items[0]);*/
+        $this->assertArrayHasKey('address_snippet', (array) $companies->items[0]);
 
         $this->assertTrue(true);
 
