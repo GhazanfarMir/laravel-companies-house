@@ -44,8 +44,6 @@ class CompaniesHouseTest extends TestCase
             'base_uri' => self::BASE_URI
         ]);
 
-        $this->client->request('GET', 'https://www.google.co.uk');
-
         $this->api = new CompaniesHouseApi($this->client);
     }
 
@@ -54,6 +52,10 @@ class CompaniesHouseTest extends TestCase
      */
     public function search_content_type_is_json()
     {
+
+        $response = $this->client->get('https://www.google.co.uk');
+
+        echo $response->getHeaderLine('content-type');
 
         /*$response = $this->client->request('GET', 'search/companies', ['query' => ['q' => 'Ebury']]);
 
