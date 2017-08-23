@@ -55,7 +55,7 @@ class CompaniesHouseTest extends TestCase
 
         $response = $this->client->get('https://www.google.co.uk');
 
-        //$response = $this->client->get('https://api.companieshouse.gov.uk/search/companies', ['query' => ['q' => 'Ebury']]);
+        $response = $this->client->get('https://api.companieshouse.gov.uk/search/companies/?q=Ebury');
 
         //$content_type = $response->getHeaders()["Content-Type"][0];
 
