@@ -53,9 +53,9 @@ class CompaniesHouseTest extends TestCase
     public function search_content_type_is_json()
     {
 
-        //$response = $this->client->get('https://www.google.co.uk');
+        $response = $this->client->get('https://www.google.co.uk');
 
-        $response = $this->client->get('https://api.companieshouse.gov.uk/search/companies', ['query' => ['q' => 'Ebury']]);
+        //$response = $this->client->get('https://api.companieshouse.gov.uk/search/companies', ['query' => ['q' => 'Ebury']]);
 
         //$content_type = $response->getHeaders()["Content-Type"][0];
 
