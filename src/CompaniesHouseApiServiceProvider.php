@@ -4,6 +4,7 @@ namespace Ghazanfar\CompaniesHouseApi;
 
 use Illuminate\Support\ServiceProvider;
 use GuzzleHttp\Client;
+
 class CompaniesHouseApiServiceProvider extends ServiceProvider
 {
 
