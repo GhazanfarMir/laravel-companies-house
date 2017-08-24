@@ -24,22 +24,7 @@ class Client
      * @var resource
      */
     protected $curl;
-
-    /**
-     * Client constructor.
-     */
-    public function __construct()
-    {
-
-        // initialise curl
-        $this->curl = curl_init();
-
-        // Optional Authentication:
-        curl_setopt($this->curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-        curl_setopt($this->curl, CURLOPT_USERPWD, self::API_KEY . ":");
-
-    }
-
+    
     /**
      * @param $uri
      * @param null $params
@@ -49,6 +34,13 @@ class Client
     {
 
         $queryString = '';
+
+        // initialise curl
+        $this->curl = curl_init();
+
+        // Optional Authentication:
+        curl_setopt($this->curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+        curl_setopt($this->curl, CURLOPT_USERPWD, self::API_KEY . ":");
 
         if (isset($params)) {
             $queryString = http_build_query($params);
@@ -61,6 +53,8 @@ class Client
         curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, 1);
 
         $response = curl_exec($this->curl);
+
+        curl_close($this->curl);
 
         echo "<pre>";
         print_r(json_decode($response));
