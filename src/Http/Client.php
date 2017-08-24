@@ -54,13 +54,13 @@ class Client
 
         $url = sprintf("%s%s?%s", self::BASE_URI, $uri, $queryString);
 
+        echo $url . PHP_EOL;
+
         curl_setopt($this->curl, CURLOPT_URL, $url);
 
         curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, 1);
 
         $response = curl_exec($this->curl);
-
-        curl_close($this->curl);
 
         return $response;
     }

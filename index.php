@@ -3,20 +3,13 @@
 //error_reporting(0);
 
 use Ghazanfar\CompaniesHouseApi\CompaniesHouseApi;
-use GuzzleHttp\Client;
+use Ghazanfar\CompaniesHouseApi\Http\Client;
 
 include 'vendor/autoload.php';
 
 try {
 
-    $base_uri = 'https://api.companieshouse.gov.uk/';
-
-    $api_key = 'IvSp6uE13FPbE8iDPx6Yey9aQ64jH3Cvm18eAE_N';
-
-    $client = new Client([
-        'auth' => [ $api_key, ''],
-        'base_uri' => $base_uri
-    ]);
+    $client = new Client();
 
     $api = new CompaniesHouseApi($client);
 
