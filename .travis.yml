@@ -7,7 +7,6 @@ php:
   - 7.1
 
 before_install:
-  - sudo apt-get -y install git zip php7-cli php7-curl
   - sudo apt-get install libcurl4-openssl-dev
 
 before_script:
