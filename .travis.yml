@@ -1,4 +1,4 @@
-sudo: false
+sudo: required
 
 language: php
 
@@ -6,6 +6,9 @@ php:
   - 7.0
   - 7.1
 
+before_install:
+  - sudo apt-get update
+  - sudo apt-get install libcurl4-openssl-dev
 
 before_script:
   - composer self-update
