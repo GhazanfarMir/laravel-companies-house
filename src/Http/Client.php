@@ -62,6 +62,10 @@ class Client
 
         $response = curl_exec($this->curl);
 
+        echo "<pre>";
+        print_r($response);
+        echo "</pre>";
+
         return $response;
     }
 }
