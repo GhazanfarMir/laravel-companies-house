@@ -93,6 +93,7 @@ class Company extends ResourcesBase
             $response = $this->client->get('search/', $params);
 
             return $this->response($response);
+
         } else {
 
             throw new \InvalidArgumentException('Invalid Argument: You must provide valid company name to search for.');

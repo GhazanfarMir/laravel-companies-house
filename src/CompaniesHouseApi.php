@@ -21,21 +21,11 @@ class CompaniesHouseApi
     public $client;
 
     /**
-     * @var
-     */
-    protected $base_uri = 'https://api.companieshouse.gov.uk/';
-
-    /**
-     * @var
-     */
-    protected $key;
-
-    /**
      * CompaniesHouseApi constructor.
      * @param Client $client
      */
 
-    public function __construct($client)
+    public function __construct(Client $client)
     {
         $this->client = $client;
     }

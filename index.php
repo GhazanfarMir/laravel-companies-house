@@ -9,9 +9,7 @@ include 'vendor/autoload.php';
 
 try {
 
-    $client = new Client();
-
-    $api = new CompaniesHouseApi($client);
+    $api = new CompaniesHouseApi(new Client());
 
     $all = $api->company()->searchAll('Ebury Partners', 1, 2);
 
@@ -20,6 +18,8 @@ try {
     $company = $api->company()->find('07086058');
 
     $officers = $api->officers()->search('Mir');
+
+    $disqualified = $api->officers()->disqualified()->search('Mir');
 
     // Search all
     print_r('Search All: ' . $all->items[0]->address_snippet . PHP_EOL);
@@ -40,7 +40,7 @@ try {
     print_r('Search Officers: ' . $officers->items[0]->title . PHP_EOL);
 
     // Search Disqualified Officers
-    print_r('Search Disqualified Officers: ' . $api->officers()->disqualified()->search('Ghazanfar')->items[0]->title . PHP_EOL);
+    print_r('Search Disqualified Officers: ' . $disqualified->items[0]->title . PHP_EOL);
 
 } catch (Exception $e) {
     echo $e->getMessage();

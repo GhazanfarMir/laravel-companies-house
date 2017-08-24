@@ -14,10 +14,12 @@ class Client
      */
 
     const API_KEY = 'IvSp6uE13FPbE8iDPx6Yey9aQ64jH3Cvm18eAE_N';
+
     /**
      * BASE API
      */
     const BASE_URI = 'https://api.companieshouse.gov.uk/';
+
     /**
      * @var resource
      */
@@ -53,8 +55,6 @@ class Client
         }
 
         $url = sprintf("%s%s?%s", self::BASE_URI, $uri, $queryString);
-
-        echo $url . PHP_EOL;
 
         curl_setopt($this->curl, CURLOPT_URL, $url);
 

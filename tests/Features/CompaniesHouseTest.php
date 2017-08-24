@@ -49,6 +49,11 @@ class CompaniesHouseTest extends TestCase
      */
     public function search_content_type_is_json()
     {
+
+        $response = $this->client->get('search/companies', ['q' => 'Ebury Partners']);
+
+        $this->assertNotEmpty(json_decode($response)->items[0]->title);
+
         $this->assertTrue(true);
     }
 
@@ -63,7 +68,7 @@ class CompaniesHouseTest extends TestCase
 
         $companies = $this->api->company()->search($name);
 
-        $this->assertArrayHasKey('address_snippet', (array)$companies->items[0]);
+        $this->assertArrayHasKey('address_snippet', (array) $companies->items[0]);
 
         $this->assertTrue(true);
 
@@ -79,7 +84,7 @@ class CompaniesHouseTest extends TestCase
 
         $company = $this->api->company()->find($number);
 
-        $this->assertArrayHasKey('company_name', (array)$company);
+        $this->assertArrayHasKey('company_name', (array) $company);
 
         $this->assertEquals($number, $company->company_number);
 
@@ -96,7 +101,7 @@ class CompaniesHouseTest extends TestCase
 
         $officers = $this->api->officers()->search($officer);
 
-        $this->assertArrayHasKey('title', (array)$officers->items[0]);
+        $this->assertArrayHasKey('title', (array) $officers->items[0]);
 
         $this->assertTrue(true);
 
@@ -112,11 +117,11 @@ class CompaniesHouseTest extends TestCase
 
         $officers = $this->api->officers()->disqualified()->search($name);
 
-        $this->assertArrayHasKey('title', (array)$officers->items[0]);
+        $this->assertArrayHasKey('title', (array) $officers->items[0]);
 
-        $this->assertArrayHasKey('date_of_birth', (array)$officers->items[0]);
+        $this->assertArrayHasKey('date_of_birth', (array) $officers->items[0]);
 
-        $this->assertArrayHasKey('address', (array)$officers->items[0]);
+        $this->assertArrayHasKey('address', (array) $officers->items[0]);
 
         $this->assertTrue(true);
 

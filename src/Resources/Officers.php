@@ -49,6 +49,7 @@ class Officers extends ResourcesBase
         }
 
         if (!empty($name)) {
+
             $params = array(
                 'q' => $name,
                 'items_per_page' => $items_per_page,
