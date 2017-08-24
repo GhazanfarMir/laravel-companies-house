@@ -3,7 +3,7 @@
 namespace Ghazanfar\CompaniesHouseApi;
 
 use Illuminate\Support\ServiceProvider;
-use GuzzleHttp\Client;
+use Ghazanfar\CompaniesHouseApi\Http\Client;
 
 class CompaniesHouseApiServiceProvider extends ServiceProvider
 {
@@ -30,12 +30,14 @@ class CompaniesHouseApiServiceProvider extends ServiceProvider
 
             $api_key = 'IvSp6uE13FPbE8iDPx6Yey9aQ64jH3Cvm18eAE_N';
 
-            $client = new Client(
+            /*$client = new Client(
                 array(
                     'base_uri' => $base_uri,
                     'auth' => array($api_key, '')
                 )
-            );
+            );*/
+
+            $client = new Client();
 
             return new CompaniesHouseApi($client);
         });
