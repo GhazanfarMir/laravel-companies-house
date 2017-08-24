@@ -52,7 +52,8 @@ class CompaniesHouseTest extends TestCase
 
         $response = $this->client->get('search/companies', ['q' => 'Ebury Partners']);
 
-        $this->assertNotEmpty(json_decode($response)->items[0]->title);
+        $response = json_decode($response);
+        $this->assertNotEmpty($response->items[0]->title);
 
         $this->assertTrue(true);
     }
