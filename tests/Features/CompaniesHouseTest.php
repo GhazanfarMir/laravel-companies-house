@@ -3,7 +3,7 @@
 namespace Ghazanfar\CompaniesHouseApi\Tests\Features;
 
 use Ghazanfar\CompaniesHouseApi\CompaniesHouseApi;
-use GuzzleHttp\Client;
+use Ghazanfar\CompaniesHouseApi\Http\Client;
 use PHPUnit\Framework\TestCase;
 
 class CompaniesHouseTest extends TestCase
@@ -39,10 +39,7 @@ class CompaniesHouseTest extends TestCase
     {
         parent::setUp();
 
-        $this->client = new Client([
-            'auth' => [self::API_KEY, ''],
-            'base_uri' => self::BASE_URI
-        ]);
+        $this->client = new Client();
 
         $this->api = new CompaniesHouseApi($this->client);
     }
@@ -52,23 +49,6 @@ class CompaniesHouseTest extends TestCase
      */
     public function search_content_type_is_json()
     {
-
-        //$response = $this->client->get('https://www.google.co.uk');
-
-        //$response = $this->client->get('https://api.companieshouse.gov.uk/search/companies/?q=Ebury');
-
-        //$content_type = $response->getHeaders()["Content-Type"][0];
-
-        //$this->assertEquals('application/json', $content_type);
-
-
-        $response = json_decode(file_get_contents('https://api.companieshouse.gov.uk/search/companies/?q=Ebury'));
-
-        echo "<pre>";
-        print_r($response->items[0]);
-        echo "</pre>";
-
-
         $this->assertTrue(true);
     }
 
@@ -79,11 +59,11 @@ class CompaniesHouseTest extends TestCase
     public function search_by_company_name()
     {
 
-        /*$name = 'ebury partners';
+        $name = 'ebury partners';
 
         $companies = $this->api->company()->search($name);
 
-        $this->assertArrayHasKey('address_snippet', (array) $companies->items[0]);*/
+        $this->assertArrayHasKey('address_snippet', (array)$companies->items[0]);
 
         $this->assertTrue(true);
 
@@ -95,13 +75,13 @@ class CompaniesHouseTest extends TestCase
     public function can_search_by_company_number()
     {
 
-        /*$number = '07039469';
+        $number = '07039469';
 
         $company = $this->api->company()->find($number);
 
-        $this->assertArrayHasKey('company_name', (array) $company);
+        $this->assertArrayHasKey('company_name', (array)$company);
 
-        $this->assertEquals($number, $company->company_number);*/
+        $this->assertEquals($number, $company->company_number);
 
         $this->assertTrue(true);
     }
@@ -112,11 +92,11 @@ class CompaniesHouseTest extends TestCase
     public function search_officers_by_name()
     {
 
-        /*$officer = 'Ghazanfar';
+        $officer = 'Ghazanfar';
 
         $officers = $this->api->officers()->search($officer);
 
-        $this->assertArrayHasKey('title', (array) $officers->items[0]);*/
+        $this->assertArrayHasKey('title', (array)$officers->items[0]);
 
         $this->assertTrue(true);
 
@@ -128,15 +108,15 @@ class CompaniesHouseTest extends TestCase
     public function search_disqualified_officers_by_name()
     {
 
-        /*$name = 'Mir';
+        $name = 'Mir';
 
         $officers = $this->api->officers()->disqualified()->search($name);
 
-        $this->assertArrayHasKey('title', (array) $officers->items[0]);
+        $this->assertArrayHasKey('title', (array)$officers->items[0]);
 
-        $this->assertArrayHasKey('date_of_birth', (array) $officers->items[0]);
+        $this->assertArrayHasKey('date_of_birth', (array)$officers->items[0]);
 
-        $this->assertArrayHasKey('address', (array) $officers->items[0]);*/
+        $this->assertArrayHasKey('address', (array)$officers->items[0]);
 
         $this->assertTrue(true);
 

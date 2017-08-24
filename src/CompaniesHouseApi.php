@@ -2,10 +2,10 @@
 
 namespace Ghazanfar\CompaniesHouseApi;
 
+use Ghazanfar\CompaniesHouseApi\Http\Client;
+use Ghazanfar\CompaniesHouseApi\Resources\Company;
 use Ghazanfar\CompaniesHouseApi\Resources\Documents;
 use Ghazanfar\CompaniesHouseApi\Resources\Officers;
-use Ghazanfar\CompaniesHouseApi\Resources\Company;
-use GuzzleHttp\Client;
 
 
 /**
@@ -35,7 +35,7 @@ class CompaniesHouseApi
      * @param Client $client
      */
 
-    public function __construct(Client $client)
+    public function __construct($client)
     {
         $this->client = $client;
     }
@@ -65,32 +65,4 @@ class CompaniesHouseApi
         return new Documents($this->client);
     }
 
-    /**
-     * @param $resource
-     * @return Company
-     * @throws InvalidResourceException
-     */
-
-    /*public function search($resource)
-    {
-
-        switch ($resource) {
-
-            case 'company':
-                return new Company($this->client);
-                break;
-
-            case 'officers':
-                return new Officers($this->client);
-                break;
-
-            case 'documents':
-                return new Documents($this->client);
-                break;
-
-            default:
-                throw new InvalidResourceException('Invalid resource. You must provide only valid resource type.');
-        }
-
-    }*/
 }

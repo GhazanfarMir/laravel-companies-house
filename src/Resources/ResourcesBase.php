@@ -2,13 +2,12 @@
 
 namespace Ghazanfar\CompaniesHouseApi\Resources;
 
-use GuzzleHttp\Client;
+use Ghazanfar\CompaniesHouseApi\Http\Client;
 
 /**
  * Class ResourcesBase
  * @package Ghazanfar\CompaniesHouse\Resources
  */
-
 class ResourcesBase
 {
 
@@ -21,7 +20,7 @@ class ResourcesBase
      * ResourcesBase constructor.
      * @param Client $client
      */
-    public function __construct(Client $client)
+    public function __construct($client)
     {
 
         $this->client = $client;
@@ -36,7 +35,7 @@ class ResourcesBase
     protected function response($response)
     {
 
-        if (empty($response) || !is_object($response)) {
+        if (empty($response)) {
             throw new \Exception('Invalid response to extract data from.');
         }
 

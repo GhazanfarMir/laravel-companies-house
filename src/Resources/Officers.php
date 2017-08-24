@@ -50,16 +50,14 @@ class Officers extends ResourcesBase
 
         if (!empty($name)) {
             $params = array(
-                'query' => array(
-                    'q' => $name,
-                    'items_per_page' => $items_per_page,
-                    'start_index' => $start_index
-                )
+                'q' => $name,
+                'items_per_page' => $items_per_page,
+                'start_index' => $start_index
             );
 
-            $response = $this->client->request('GET', $this->endpoint, $params);
+            $response = $this->client->get($this->endpoint, $params);
 
-            return $this->response($response->getBody());
+            return $this->response($response);
 
         } else {
 
