@@ -35,24 +35,23 @@ class Client
 
         $queryString = '';
 
-        // initialise curl
-        $this->curl = curl_init();
-
-        // Optional Authentication:
-        curl_setopt($this->curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-        curl_setopt($this->curl, CURLOPT_USERPWD, self::API_KEY . ":");
-
         if (isset($params)) {
             $queryString = http_build_query($params);
         }
 
         $url = sprintf("%s%s?%s", self::BASE_URI, $uri, $queryString);
 
-        curl_setopt($this->curl, CURLOPT_URL, $url);
+        // initialise curl
+        $this->curl = curl_init($url);
 
+        // Optional Authentication:
+        curl_setopt($this->curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+        curl_setopt($this->curl, CURLOPT_USERPWD, self::API_KEY . ":");
         curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, 1);
 
-        $response = curl_exec($this->curl);
+        if (false === ($response = curl_exec($this->curl))) {
+            echo 'Curl error: ' . curl_error($this->curl);
+        }
 
         curl_close($this->curl);
 
