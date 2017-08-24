@@ -24,7 +24,7 @@ class Client
      * @var resource
      */
     protected $curl;
-    
+
     /**
      * @param $uri
      * @param null $params
@@ -55,10 +55,6 @@ class Client
         $response = curl_exec($this->curl);
 
         curl_close($this->curl);
-
-        echo "<pre>";
-        print_r(json_decode($response));
-        echo "</pre>";
 
         return $response;
     }
