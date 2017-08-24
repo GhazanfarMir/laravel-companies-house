@@ -58,7 +58,7 @@ class Officers extends ResourcesBase
 
             $response = $this->client->get($this->endpoint, $params);
 
-            return $this->response($response);
+            return json_decode($response);
 
         } else {
 

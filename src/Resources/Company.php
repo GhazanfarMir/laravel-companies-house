@@ -47,7 +47,7 @@ class Company extends ResourcesBase
 
             $response = $this->client->get('search/companies', $params);
 
-            return $this->response($response);
+            return json_decode($response);
 
         } else {
 
@@ -65,7 +65,7 @@ class Company extends ResourcesBase
 
             $response = $this->client->get('company/' . $number);
 
-            return $this->response($response);
+            return json_decode($response);
 
         } else {
 
@@ -92,7 +92,7 @@ class Company extends ResourcesBase
 
             $response = $this->client->get('search/', $params);
 
-            return $this->response($response);
+            return json_decode($response);
 
         } else {
 

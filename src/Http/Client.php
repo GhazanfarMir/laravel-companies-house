@@ -63,7 +63,7 @@ class Client
         $response = curl_exec($this->curl);
 
         echo "<pre>";
-        print_r($response);
+        print_r(json_decode($response));
         echo "</pre>";
 
         return $response;
