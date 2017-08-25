@@ -10,20 +10,40 @@ class Client
 {
 
     /**
-     * API KEY used for testing
+     * @var string
      */
-
-    const API_KEY = 'IvSp6uE13FPbE8iDPx6Yey9aQ64jH3Cvm18eAE_N';
+    protected $api_key = 'IvSp6uE13FPbE8iDPx6Yey9aQ64jH3Cvm18eAE_N';
 
     /**
-     * BASE API
+     * @var string
      */
-    const BASE_URI = 'https://api.companieshouse.gov.uk/';
+    protected $base_uri = 'https://api.companieshouse.gov.uk/';
 
     /**
      * @var resource
      */
-    protected $curl;
+    protected $handle;
+
+    /**
+     * @var
+     */
+    protected $options;
+
+    /**
+     * @var
+     */
+    protected $uri;
+
+    /**
+     * Client constructor.
+     * @param $base_uri
+     * @param $options
+     */
+    public function __construct($base_uri, $options)
+    {
+        $this->base_uri = $base_uri;
+        $this->options = $options;
+    }
 
     /**
      * @param $uri
@@ -39,21 +59,21 @@ class Client
             $queryString = http_build_query($params);
         }
 
-        $url = sprintf("%s%s?%s", self::BASE_URI, $uri, $queryString);
+        $url = sprintf("%s%s?%s", $this->base_uri, $uri, $queryString);
 
         // initialise curl
-        $this->curl = curl_init($url);
+        $this->handle = curl_init($url);
 
         // Optional Authentication:
-        curl_setopt($this->curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-        curl_setopt($this->curl, CURLOPT_USERPWD, self::API_KEY . ":");
-        curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($this->handle, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+        curl_setopt($this->handle, CURLOPT_USERPWD, $this->api_key . ":");
+        curl_setopt($this->handle, CURLOPT_RETURNTRANSFER, 1);
 
-        if (false === ($response = curl_exec($this->curl))) {
-            echo 'Curl error: ' . curl_error($this->curl);
+        if (false === ($response = curl_exec($this->handle))) {
+            echo 'Curl error: ' . curl_error($this->handle);
         }
 
-        curl_close($this->curl);
+        curl_close($this->handle);
 
         return $response;
     }

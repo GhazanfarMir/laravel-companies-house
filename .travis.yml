@@ -2,6 +2,10 @@ sudo: required
 
 language: php
 
+cache:
+  directories:
+    - $HOME/.composer/cache
+
 php:
   - 7.0
   - 7.1
