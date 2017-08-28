@@ -6,6 +6,9 @@ cache:
   directories:
     - $HOME/.composer/cache
 
+env:
+  - PLATFORM=travis
+
 php:
   - 7.0
   - 7.1
