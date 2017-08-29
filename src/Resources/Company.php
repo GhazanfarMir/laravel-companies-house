@@ -28,6 +28,11 @@ class Company extends ResourcesBase
      */
     protected $officers;
 
+    /**
+     * @var
+     */
+    protected $info;
+
 
     /**
      * @param $name
@@ -63,9 +68,9 @@ class Company extends ResourcesBase
     {
         if (!empty($number)) {
 
-            $response = $this->client->get('company/' . $number);
+            $this->info = $this->client->get('company/' . $number);
 
-            return json_decode($response);
+            return $this;
 
         } else {
 
@@ -98,6 +103,34 @@ class Company extends ResourcesBase
 
             throw new \InvalidArgumentException('Invalid Argument: You must provide valid company name to search for.');
         }
+    }
+
+    /**
+     * @return array|bool|mixed|null|object
+     */
+    public function get()
+    {
+
+        if(empty($this->info))
+        {
+            return false;
+        }
+
+        return json_decode($this->info);
+    }
+
+    /**
+     * @return array
+     */
+    public function officers()
+    {
+
+        if(empty($this->officers))
+        {
+            return [];
+        }
+
+        return json_decode($this->officers);
     }
 
 }

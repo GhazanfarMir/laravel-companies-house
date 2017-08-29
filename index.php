@@ -9,13 +9,19 @@ include 'vendor/autoload.php';
 
 try {
 
-    $api = new CompaniesHouseApi(new Client());
+    $base_uri = 'https://api.companieshouse.gov.uk/';
 
-    $all = $api->company()->searchAll('Ebury Partners', 1, 2);
+    $api_key = 'IvSp6uE13FPbE8iDPx6Yey9aQ64jH3Cvm18eAE_N';
+
+    $client = new Client($base_uri, $api_key);
+
+    $api = new CompaniesHouseApi($client);
+
+    $all = $api->company()->searchAll('Ebury Partners');
 
     $companies = $api->company()->search('Ebury Partners');
 
-    $company = $api->company()->find('07086058');
+    $company = $api->company()->find('07086058')->get();
 
     $officers = $api->officers()->search('Mir');
 
@@ -26,12 +32,6 @@ try {
 
     // Search by name
     print_r('Search Company byName: ' . $companies->items[0]->address_snippet . PHP_EOL);
-
-    // Search by number
-    print_r('Search Company byNumber: ' . $company->company_name . PHP_EOL);
-
-    // Search Officers
-    print_r('Search Officers: ' . $officers->items[0]->title . PHP_EOL);
 
     // Search by number
     print_r('Search Company byNumber: ' . $company->company_name . PHP_EOL);

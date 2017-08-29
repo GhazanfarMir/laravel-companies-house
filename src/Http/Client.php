@@ -10,20 +10,93 @@ class Client
 {
 
     /**
-     * API KEY used for testing
+     * @var string
      */
-
-    const API_KEY = 'IvSp6uE13FPbE8iDPx6Yey9aQ64jH3Cvm18eAE_N';
+    protected $api_key;
 
     /**
-     * BASE API
+     * @var string
      */
-    const BASE_URI = 'https://api.companieshouse.gov.uk/';
+    protected $base_uri;
 
     /**
      * @var resource
      */
-    protected $curl;
+    protected $handle;
+
+    /**
+     * @var
+     */
+    protected $options;
+
+    /**
+     * @var
+     */
+    protected $uri;
+
+    /**
+     * @var
+     */
+    protected $response;
+
+    /**
+     * Client constructor.
+     * @param $base_uri
+     * @param $api_key
+     * @internal param $options
+     */
+    public function __construct($base_uri, $api_key)
+    {
+        $this->base_uri = $base_uri;
+
+        $this->api_key = $api_key;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBaseUri()
+    {
+        return $this->base_uri;
+    }
+
+    /**
+     * @param string $base_uri
+     */
+    public function setBaseUri($base_uri)
+    {
+        $this->base_uri = $base_uri;
+    }
+
+
+    /**
+     * @param $name
+     * @param $value
+     */
+    public function setOption($name, $value)
+    {
+        curl_setopt($this->handle, $name, $value);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOptions()
+    {
+        return $this->options;
+    }
+
+    /**
+     * @param $options
+     * @return $this
+     */
+    public function setOptions($options)
+    {
+        $this->options = $options;
+        curl_setopt_array($this->handle, $options);
+
+        return $this;
+    }
 
     /**
      * @param $uri
@@ -33,28 +106,88 @@ class Client
     public function get($uri, $params = null)
     {
 
-        $queryString = '';
+        try {
 
-        if (isset($params)) {
-            $queryString = http_build_query($params);
+            $url = $this->buildUrl($uri, $params);
+
+            $this->handle = curl_init($url);
+
+            $this->setOptions(array(
+                CURLOPT_HTTPAUTH => CURLAUTH_BASIC,
+                CURLOPT_USERPWD => $this->api_key . ":",
+                CURLOPT_RETURNTRANSFER => 1
+            ));
+
+            $this->execute();
+
+            $this->close();
+
+            return $this->getResponse();
+
+        } catch (\Exception $e) {
+            echo $e->getMessage();
         }
-
-        $url = sprintf("%s%s?%s", self::BASE_URI, $uri, $queryString);
-
-        // initialise curl
-        $this->curl = curl_init($url);
-
-        // Optional Authentication:
-        curl_setopt($this->curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-        curl_setopt($this->curl, CURLOPT_USERPWD, self::API_KEY . ":");
-        curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, 1);
-
-        if (false === ($response = curl_exec($this->curl))) {
-            echo 'Curl error: ' . curl_error($this->curl);
-        }
-
-        curl_close($this->curl);
-
-        return $response;
     }
+
+    /**
+     * @param $uri
+     * @param $params
+     * @return string
+     */
+    public function buildUrl($uri, $params)
+    {
+
+        if (isset($params) && count($params)) {
+
+            $queryString = http_build_query($params);
+
+            return sprintf("%s%s?%s", $this->base_uri, $uri, $queryString);
+        }
+
+         return sprintf("%s%s", $this->base_uri, $uri);
+    }
+
+    /**
+     * @return mixed
+     * @throws \Exception
+     */
+    public function execute()
+    {
+
+        $response = curl_exec($this->handle);
+
+        if (CURLE_OK !== $this->getErrorCode()) {
+            throw new \Exception(
+                sprintf('An error (%d) occurred while executing the cURL request.', $this->getErrorCode())
+            );
+        }
+        $this->response = $response;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getErrorCode()
+    {
+        return curl_errno($this->handle);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getResponse()
+    {
+        return $this->response;
+    }
+
+    /**
+     * close Curl
+     */
+    public function close()
+    {
+        curl_close($this->handle);
+    }
+
 }

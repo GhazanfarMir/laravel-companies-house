@@ -20,7 +20,7 @@ class ResourcesBase
      * ResourcesBase constructor.
      * @param Client $client
      */
-    public function __construct($client)
+    public function __construct(Client $client)
     {
 
         $this->client = $client;
