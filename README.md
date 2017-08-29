@@ -36,17 +36,43 @@ And also add the alias to the same file.
 
 ## How to use?
 
-```
-Put instructions on how to use the package
-```
+#### Company
 
 ```
 CompaniesHouseApi::company()->search('Company name'); // search companies by name
 ```
 
+`CompaniesHouseApi::company()->find('company number')` is now going to return an **object** which can be chained to get other resources related data.
+
+For example, calling `get()` on the object will return company information:
+
 ```
-CompaniesHouseApi::company()->find('company number'); // find companies by number
+CompaniesHouseApi::company()->find('company number')->get(); // find companies by number
 ```
+
+Similarly, you may get information related to other company resources such 'offices', 'company_registered_office', 'filing_history' etc using the helper method `with()` which accepts an array of resources you need.
+
+For example:
+
+```
+$obj = CompaniesHouseApi::company()->with('officers')->find('company_number'); // returns an object
+
+$company = $obj->get(); // company information
+
+$officers = $obj->officers(); // company officers collection
+```
+
+You may include more than one resources in **with()** using an array.
+
+```
+$obj = CompaniesHouseApi::company()->with(['officers', 'registered_office_address'])->find('company_number'); // returns an object
+```
+
+$officers = $obj->officers(); // get company's officers collection
+
+$registered_address = $obj->registeredOfficeAddress(); // get company's registered address
+
+#### Officers
 
 ```
 CompaniesHouseApi::officers()->search('Mir'); // search officers by name
