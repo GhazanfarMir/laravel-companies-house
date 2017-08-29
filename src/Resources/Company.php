@@ -1,7 +1,7 @@
 <?php
 
 namespace Ghazanfar\CompaniesHouseApi\Resources;
-
+use Prophecy\Exception\InvalidArgumentException;
 
 /**
  * Class Company
@@ -27,6 +27,41 @@ class Company extends ResourcesBase
      * @var
      */
     protected $officers;
+
+    /**
+     * @var
+     */
+    protected $info;
+
+    /**
+     * @var
+     */
+    protected $filings;
+
+    /**
+     * @var
+     */
+    protected $documents;
+
+    /**
+     * @var
+     */
+    protected $registered_office_address;
+
+    /**
+     * @var
+     */
+    protected $with;
+
+    /**
+     * @var
+     */
+    protected $valid_resources = array(
+        'officers',
+        'filing_history',
+        'registered_office_address',
+        'charges'
+    );
 
 
     /**
@@ -57,15 +92,36 @@ class Company extends ResourcesBase
 
     /**
      * @param $number
-     * @return array|mixed|null|object
+     * @return $this
      */
     public function find($number)
     {
+
+        $base = "company/$number";
+
         if (!empty($number)) {
 
-            $response = $this->client->get('company/' . $number);
+            $this->info = $this->client->get($base);
 
-            return json_decode($response);
+            if (count($this->with)) {
+
+                foreach ($this->with as $resource) {
+
+                    if(!in_array($resource, $this->valid_resources))
+                    {
+                        $valid_resource_string = implode(', ', $this->valid_resources);
+
+                        throw new InvalidArgumentException("Invalid resource ($resource). You must provide a valid company resource. e.g. $valid_resource_string.");
+                    }
+
+                    $endpoint = str_replace('_', '-', $resource);
+
+                    $this->$resource = $this->client->get($base . "/$endpoint");
+
+                }
+            }
+
+            return $this;
 
         } else {
 
@@ -98,6 +154,72 @@ class Company extends ResourcesBase
 
             throw new \InvalidArgumentException('Invalid Argument: You must provide valid company name to search for.');
         }
+    }
+
+    /**
+     * @return array|bool|mixed|null|object
+     */
+    public function get()
+    {
+
+        if (empty($this->info)) {
+            return false;
+        }
+
+        return json_decode($this->info);
+    }
+
+    /**
+     * @return array
+     */
+    public function officers()
+    {
+
+        if (empty($this->officers)) {
+            return [];
+        }
+
+        return json_decode($this->officers);
+    }
+
+    /**
+     * @return array|mixed
+     */
+    public function charges()
+    {
+        if (empty($this->charges)) {
+            return [];
+        }
+
+        return json_decode($this->charges);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function registeredOfficeAddress()
+    {
+        if (empty($this->registered_office_address)) {
+            return [];
+        }
+
+        return json_decode($this->registered_office_address);
+    }
+
+    /**
+     * @param $resources
+     * @return $this
+     */
+    public function with($resources)
+    {
+
+        if (!is_array($resources)) {
+            $resources = (array)$resources;
+        }
+
+        $this->with = $resources;
+
+        return $this;
     }
 
 }
