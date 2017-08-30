@@ -31,12 +31,13 @@ class Officers extends ResourcesBase
      * @param $name
      * @param int $items_per_page
      * @param int $start_index
+     *
      * @return array|mixed|null|object
+     *
      * @internal param $disqualified_flag
      */
     public function search($name, $items_per_page = 20, $start_index = 0)
     {
-
         // check if the disqualified flag is set
 
         if ($this->disqualified_flag) {

@@ -39,8 +39,10 @@ class Client
 
     /**
      * Client constructor.
+     *
      * @param $base_uri
      * @param $api_key
+     *
      * @internal param $options
      */
     public function __construct($base_uri, $api_key)
@@ -85,6 +87,7 @@ class Client
 
     /**
      * @param $options
+     *
      * @return $this
      */
     public function setOptions($options)
@@ -98,6 +101,7 @@ class Client
     /**
      * @param $uri
      * @param null $params
+     *
      * @return array|mixed|null|object
      */
     public function get($uri, $params = null)
@@ -126,6 +130,7 @@ class Client
     /**
      * @param $uri
      * @param $params
+     *
      * @return string
      */
     public function buildUrl($uri, $params)
@@ -141,6 +146,7 @@ class Client
 
     /**
      * @return mixed
+     *
      * @throws \Exception
      */
     public function execute()

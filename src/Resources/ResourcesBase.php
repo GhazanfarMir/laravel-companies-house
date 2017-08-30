@@ -16,6 +16,7 @@ class ResourcesBase
 
     /**
      * ResourcesBase constructor.
+     *
      * @param Client $client
      */
     public function __construct(Client $client)
@@ -25,7 +26,9 @@ class ResourcesBase
 
     /**
      * @param $response
+     *
      * @return array|mixed|null|object
+     *
      * @throws \Exception
      */
     protected function response($response)
