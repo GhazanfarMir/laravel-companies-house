@@ -1,4 +1,6 @@
-# Laravel Companies House [![Build Status](https://travis-ci.org/ghazanfarmir/laravel-companies-house.svg?branch=master)](https://travis-ci.org/ghazanfarmir/laravel-companies-house) [![StyleCI](https://styleci.io/repos/100057895/shield?branch=master)](https://styleci.io/repos/100057895)
+# Laravel Companies House 
+
+[![Build Status](https://travis-ci.org/ghazanfarmir/laravel-companies-house.svg?branch=master)](https://travis-ci.org/ghazanfarmir/laravel-companies-house) [![StyleCI](https://styleci.io/repos/100057895/shield?branch=master)](https://styleci.io/repos/100057895) [![License](https://poser.pugx.org/ghazanfarmir/laravel-companies-house/license)](https://packagist.org/packages/ghazanfarmir/laravel-companies-house) [![Latest Stable Version](https://poser.pugx.org/ghazanfarmir/laravel-companies-house/v/stable)](https://packagist.org/packages/ghazanfarmir/laravel-companies-house)
 
 This Laravel Package implements an API client for the Companies House REST API. It can be used to look up information about companies registered in the United Kingdom.
 As of July 2016, this API is described by Companies House as a "beta service."
