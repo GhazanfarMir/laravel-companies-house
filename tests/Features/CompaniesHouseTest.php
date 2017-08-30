@@ -2,9 +2,9 @@
 
 namespace Ghazanfar\CompaniesHouseApi\Tests\Features;
 
-use Ghazanfar\CompaniesHouseApi\CompaniesHouseApi;
-use Ghazanfar\CompaniesHouseApi\Http\Client;
 use PHPUnit\Framework\TestCase;
+use Ghazanfar\CompaniesHouseApi\Http\Client;
+use Ghazanfar\CompaniesHouseApi\CompaniesHouseApi;
 
 class CompaniesHouseTest extends TestCase
 {

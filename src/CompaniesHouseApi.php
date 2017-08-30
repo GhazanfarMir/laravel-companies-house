@@ -4,8 +4,8 @@ namespace Ghazanfar\CompaniesHouseApi;
 
 use Ghazanfar\CompaniesHouseApi\Http\Client;
 use Ghazanfar\CompaniesHouseApi\Resources\Company;
-use Ghazanfar\CompaniesHouseApi\Resources\Documents;
 use Ghazanfar\CompaniesHouseApi\Resources\Officers;
+use Ghazanfar\CompaniesHouseApi\Resources\Documents;
 
 /**
  * Class CompaniesHouse.

@@ -44,7 +44,7 @@ class Officers extends ResourcesBase
             $this->endpoint = 'search/disqualified-officers';
         }
 
-        if (!empty($name)) {
+        if (! empty($name)) {
             $params = [
                 'q' => $name,
                 'items_per_page' => $items_per_page,

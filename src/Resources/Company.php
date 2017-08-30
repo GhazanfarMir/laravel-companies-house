@@ -11,21 +11,18 @@ class Company extends ResourcesBase
 {
     /**
      * Company name.
-     *
      * @var
      */
     protected $name;
 
     /**
      * Company number.
-     *
      * @var
      */
     protected $number;
 
     /**
      * Company officers.
-     *
      * @var
      */
     protected $officers;
@@ -74,7 +71,7 @@ class Company extends ResourcesBase
      */
     public function search($name, $items_per_page = 20, $start_index = 0)
     {
-        if (!empty($name)) {
+        if (! empty($name)) {
             $params = [
                 'q' => $name,
                 'items_per_page' => $items_per_page,
@@ -98,12 +95,14 @@ class Company extends ResourcesBase
     {
         $base = "company/$number";
 
-        if (!empty($number)) {
+        if (! empty($number)) {
             $this->info = $this->client->get($base);
 
             if (count($this->with)) {
                 foreach ($this->with as $resource) {
-                    if (!in_array($resource, $this->valid_resources)) {
+
+                    if (! in_array($resource, $this->valid_resources)) {
+
                         $valid_resource_string = implode(', ', $this->valid_resources);
 
                         throw new InvalidArgumentException("Invalid resource ($resource). You must provide a valid company resource. e.g. $valid_resource_string.");
@@ -130,7 +129,9 @@ class Company extends ResourcesBase
      */
     public function searchAll($search, $items_per_page = 20, $start_index = 0)
     {
-        if (!empty($search)) {
+
+        if (! empty($search)) {
+
             $params = [
                 'q' => $search,
                 'items_per_page' => $items_per_page,
@@ -200,7 +201,7 @@ class Company extends ResourcesBase
      */
     public function with($resources)
     {
-        if (!is_array($resources)) {
+        if (! is_array($resources)) {
             $resources = (array) $resources;
         }
 

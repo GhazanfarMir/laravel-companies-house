@@ -1,0 +1,6 @@
+preset: laravel
+
+finder:
+    path:
+        - "src"
+        - "tests"
