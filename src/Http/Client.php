@@ -3,12 +3,10 @@
 namespace Ghazanfar\CompaniesHouseApi\Http;
 
 /**
- * Class Client
- * @package Ghazanfar\CompaniesHouseApi\Http
+ * Class Client.
  */
 class Client
 {
-
     /**
      * @var string
      */
@@ -68,7 +66,6 @@ class Client
         $this->base_uri = $base_uri;
     }
 
-
     /**
      * @param $name
      * @param $value
@@ -105,25 +102,22 @@ class Client
      */
     public function get($uri, $params = null)
     {
-
         try {
-
             $url = $this->buildUrl($uri, $params);
 
             $this->handle = curl_init($url);
 
-            $this->setOptions(array(
+            $this->setOptions([
                 CURLOPT_HTTPAUTH => CURLAUTH_BASIC,
-                CURLOPT_USERPWD => $this->api_key . ":",
-                CURLOPT_RETURNTRANSFER => 1
-            ));
+                CURLOPT_USERPWD => $this->api_key.':',
+                CURLOPT_RETURNTRANSFER => 1,
+            ]);
 
             $this->execute();
 
             $this->close();
 
             return $this->getResponse();
-
         } catch (\Exception $e) {
             echo $e->getMessage();
         }
@@ -136,15 +130,13 @@ class Client
      */
     public function buildUrl($uri, $params)
     {
-
         if (isset($params) && count($params)) {
-
             $queryString = http_build_query($params);
 
-            return sprintf("%s%s?%s", $this->base_uri, $uri, $queryString);
+            return sprintf('%s%s?%s', $this->base_uri, $uri, $queryString);
         }
 
-         return sprintf("%s%s", $this->base_uri, $uri);
+        return sprintf('%s%s', $this->base_uri, $uri);
     }
 
     /**
@@ -153,7 +145,6 @@ class Client
      */
     public function execute()
     {
-
         $response = curl_exec($this->handle);
 
         if (CURLE_OK !== $this->getErrorCode()) {
@@ -183,11 +174,10 @@ class Client
     }
 
     /**
-     * close Curl
+     * close Curl.
      */
     public function close()
     {
         curl_close($this->handle);
     }
-
 }
