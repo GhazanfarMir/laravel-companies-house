@@ -9,16 +9,17 @@ More information about this free API can be found
 
 ## Installation
 
-To install, use the following to pull the package via `Composer`.
+To install, use the following to pull the package via Composer.
 
 ```
-composer require ghazanfar/laravel-companies-house
+composer require ghazanfarmir/laravel-companies-house
 ```
 
-Now register the Service provider in `config/app.php`
+Now register the Service Provider in config/app.php
 
 ```
 'providers' => [
+    
     ...
     
     Ghazanfar\CompaniesHouse\CompaniesHouseServiceProvider::class,
@@ -28,6 +29,7 @@ And also add the alias to the same file.
 
 ```
 'aliases' => [
+    
     ...
     
     'CompaniesHouse' => Ghazanfar\CompaniesHouse\Facades\CompaniesHouse::class,
@@ -39,7 +41,9 @@ And also add the alias to the same file.
 #### Company
 
 ```
-CompaniesHouseApi::company()->search('Company name'); // search companies by name
+// search companies by name
+
+CompaniesHouseApi::company()->search('Company name');
 ```
 
 `CompaniesHouseApi::company()->find('company number')` is now going to return an **object** which can be chained to get other resources related data.
@@ -47,30 +51,36 @@ CompaniesHouseApi::company()->search('Company name'); // search companies by nam
 For example, calling `get()` on the object will return company information:
 
 ```
-CompaniesHouseApi::company()->find('company number')->get(); // find companies by number
+// find companies by number
+
+CompaniesHouseApi::company()->find('company number')->get();
 ```
 
-Similarly, you may get information related to other company resources such 'offices', 'company_registered_office', 'filing_history' etc using the helper method `with()` which accepts an array of resources you need.
+Similarly, you may get information related to other company resources such offices, company_registered_office, filing_history etc using the helper method **with()** which accepts an array of resources you need.
 
-For example:
-
-```
-$obj = CompaniesHouseApi::company()->with('officers')->find('company_number'); // returns an object
-
-$company = $obj->get(); // company information
-
-$officers = $obj->officers(); // company officers collection
-```
-
-You may include more than one resources in **with()** using an array.
+**Example**
 
 ```
-$obj = CompaniesHouseApi::company()->with(['officers', 'registered_office_address'])->find('company_number'); // returns an object
+$obj = CompaniesHouseApi::company()->with('officers')->find('company_number');
+
+$company = $obj->get();
+
+$officers = $obj->officers();
+
+...
 ```
+
+You may include more than one resources in **with()** within an array as follows:
+
+```
+
+$obj = CompaniesHouseApi::company()->with(['officers', 'registered_office_address'])->find('company_number');
 
 $officers = $obj->officers(); // get company's officers collection
 
 $registered_address = $obj->registeredOfficeAddress(); // get company's registered address
+
+```
 
 #### Officers
 
