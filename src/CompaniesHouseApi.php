@@ -4,17 +4,14 @@ namespace Ghazanfar\CompaniesHouseApi;
 
 use Ghazanfar\CompaniesHouseApi\Http\Client;
 use Ghazanfar\CompaniesHouseApi\Resources\Company;
-use Ghazanfar\CompaniesHouseApi\Resources\Documents;
 use Ghazanfar\CompaniesHouseApi\Resources\Officers;
-
+use Ghazanfar\CompaniesHouseApi\Resources\Documents;
 
 /**
- * Class CompaniesHouse
- * @package Ghazanfar\CompaniesHouse
+ * Class CompaniesHouse.
  */
 class CompaniesHouseApi
 {
-
     /**
      * @var
      */
@@ -24,7 +21,6 @@ class CompaniesHouseApi
      * CompaniesHouseApi constructor.
      * @param Client $client
      */
-
     public function __construct(Client $client)
     {
         $this->client = $client;
@@ -33,7 +29,6 @@ class CompaniesHouseApi
     /**
      * @return Company
      */
-
     public function company()
     {
         return new Company($this->client);
@@ -54,5 +49,4 @@ class CompaniesHouseApi
     {
         return new Documents($this->client);
     }
-
 }

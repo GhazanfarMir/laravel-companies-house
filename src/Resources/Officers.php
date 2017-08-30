@@ -3,13 +3,10 @@
 namespace Ghazanfar\CompaniesHouseApi\Resources;
 
 /**
- * Class Officers
- * @package Ghazanfar\CompaniesHouseApi\Resources
+ * Class Officers.
  */
-
 class Officers extends ResourcesBase
 {
-
     /**
      * @var int
      */
@@ -20,13 +17,11 @@ class Officers extends ResourcesBase
      */
     protected $endpoint = 'search/officers';
 
-
     /**
      * @return $this
      */
     public function disqualified()
     {
-
         $this->disqualified_flag = true;
 
         return $this;
@@ -48,22 +43,18 @@ class Officers extends ResourcesBase
             $this->endpoint = 'search/disqualified-officers';
         }
 
-        if (!empty($name)) {
-
-            $params = array(
+        if (! empty($name)) {
+            $params = [
                 'q' => $name,
                 'items_per_page' => $items_per_page,
-                'start_index' => $start_index
-            );
+                'start_index' => $start_index,
+            ];
 
             $response = $this->client->get($this->endpoint, $params);
 
             return json_decode($response);
-
         } else {
-
             throw new \InvalidArgumentException('Invalid Argument: You must provide valid officer\'s name to search for.');
         }
     }
-
 }

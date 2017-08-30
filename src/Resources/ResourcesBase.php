@@ -5,12 +5,10 @@ namespace Ghazanfar\CompaniesHouseApi\Resources;
 use Ghazanfar\CompaniesHouseApi\Http\Client;
 
 /**
- * Class ResourcesBase
- * @package Ghazanfar\CompaniesHouse\Resources
+ * Class ResourcesBase.
  */
 class ResourcesBase
 {
-
     /**
      * @var
      */
@@ -22,9 +20,7 @@ class ResourcesBase
      */
     public function __construct(Client $client)
     {
-
         $this->client = $client;
-
     }
 
     /**
@@ -34,13 +30,10 @@ class ResourcesBase
      */
     protected function response($response)
     {
-
         if (empty($response)) {
             throw new \Exception('Invalid response to extract data from.');
         }
 
         return json_decode($response);
     }
-
-
 }
