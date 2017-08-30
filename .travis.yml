@@ -2,6 +2,13 @@ sudo: required
 
 language: php
 
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+env:
+  - PLATFORM=travis
+
 php:
   - 7.1
 

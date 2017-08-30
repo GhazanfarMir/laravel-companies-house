@@ -30,14 +30,7 @@ class CompaniesHouseApiServiceProvider extends ServiceProvider
 
             $api_key = 'IvSp6uE13FPbE8iDPx6Yey9aQ64jH3Cvm18eAE_N';
 
-            /*$client = new Client(
-                array(
-                    'base_uri' => $base_uri,
-                    'auth' => array($api_key, '')
-                )
-            );*/
-
-            $client = new Client();
+            $client = new Client($base_uri, $api_key);
 
             return new CompaniesHouseApi($client);
         });
