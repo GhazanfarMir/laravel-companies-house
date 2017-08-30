@@ -1,29 +1,31 @@
 <?php
 
 namespace Ghazanfar\CompaniesHouseApi\Resources;
+
 use Prophecy\Exception\InvalidArgumentException;
 
 /**
- * Class Company
+ * Class Company.
  */
-
 class Company extends ResourcesBase
 {
-
     /**
-     * Company name
+     * Company name.
+     *
      * @var
      */
     protected $name;
 
     /**
-     * Company number
+     * Company number.
+     *
      * @var
      */
     protected $number;
 
     /**
-     * Company officers
+     * Company officers.
+     *
      * @var
      */
     protected $officers;
@@ -56,59 +58,52 @@ class Company extends ResourcesBase
     /**
      * @var
      */
-    protected $valid_resources = array(
+    protected $valid_resources = [
         'officers',
         'filing_history',
         'registered_office_address',
-        'charges'
-    );
-
+        'charges',
+    ];
 
     /**
      * @param $name
      * @param int $items_per_page
      * @param int $start_index
+     *
      * @return array|mixed|null|object
      */
     public function search($name, $items_per_page = 20, $start_index = 0)
     {
         if (!empty($name)) {
-
-            $params = array(
+            $params = [
                 'q' => $name,
                 'items_per_page' => $items_per_page,
-                'start_index' => $start_index
-            );
+                'start_index' => $start_index,
+            ];
 
             $response = $this->client->get('search/companies', $params);
 
             return json_decode($response);
-
         } else {
-
             throw new \InvalidArgumentException('Invalid Argument: You must provide valid company name to search for.');
         }
     }
 
     /**
      * @param $number
+     *
      * @return $this
      */
     public function find($number)
     {
-
         $base = "company/$number";
 
         if (!empty($number)) {
-
             $this->info = $this->client->get($base);
 
             if (count($this->with)) {
-
                 foreach ($this->with as $resource) {
-
-                    if(!in_array($resource, $this->valid_resources))
-                    {
+                    if (!in_array($resource, $this->valid_resources)) {
                         $valid_resource_string = implode(', ', $this->valid_resources);
 
                         throw new InvalidArgumentException("Invalid resource ($resource). You must provide a valid company resource. e.g. $valid_resource_string.");
@@ -116,17 +111,13 @@ class Company extends ResourcesBase
 
                     $endpoint = str_replace('_', '-', $resource);
 
-                    $this->$resource = $this->client->get($base . "/$endpoint");
-
+                    $this->$resource = $this->client->get($base."/$endpoint");
                 }
             }
 
             return $this;
-
         } else {
-
             throw new \InvalidArgumentException('Missing Search Term: Company number can not be empty, you must provide a company number to get profile.');
-
         }
     }
 
@@ -134,24 +125,22 @@ class Company extends ResourcesBase
      * @param $search
      * @param $items_per_page
      * @param $start_index
+     *
      * @return array|mixed|null|object
      */
     public function searchAll($search, $items_per_page = 20, $start_index = 0)
     {
         if (!empty($search)) {
-
-            $params = array(
+            $params = [
                 'q' => $search,
                 'items_per_page' => $items_per_page,
-                'start_index' => $start_index
-            );
+                'start_index' => $start_index,
+            ];
 
             $response = $this->client->get('search/', $params);
 
             return json_decode($response);
-
         } else {
-
             throw new \InvalidArgumentException('Invalid Argument: You must provide valid company name to search for.');
         }
     }
@@ -161,7 +150,6 @@ class Company extends ResourcesBase
      */
     public function get()
     {
-
         if (empty($this->info)) {
             return false;
         }
@@ -174,7 +162,6 @@ class Company extends ResourcesBase
      */
     public function officers()
     {
-
         if (empty($this->officers)) {
             return [];
         }
@@ -208,18 +195,17 @@ class Company extends ResourcesBase
 
     /**
      * @param $resources
+     *
      * @return $this
      */
     public function with($resources)
     {
-
         if (!is_array($resources)) {
-            $resources = (array)$resources;
+            $resources = (array) $resources;
         }
 
         $this->with = $resources;
 
         return $this;
     }
-
 }

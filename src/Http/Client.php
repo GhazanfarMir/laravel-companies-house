@@ -3,12 +3,10 @@
 namespace Ghazanfar\CompaniesHouseApi\Http;
 
 /**
- * Class Client
- * @package Ghazanfar\CompaniesHouseApi\Http
+ * Class Client.
  */
 class Client
 {
-
     /**
      * @var string
      */
@@ -41,8 +39,10 @@ class Client
 
     /**
      * Client constructor.
+     *
      * @param $base_uri
      * @param $api_key
+     *
      * @internal param $options
      */
     public function __construct($base_uri, $api_key)
@@ -68,7 +68,6 @@ class Client
         $this->base_uri = $base_uri;
     }
 
-
     /**
      * @param $name
      * @param $value
@@ -88,6 +87,7 @@ class Client
 
     /**
      * @param $options
+     *
      * @return $this
      */
     public function setOptions($options)
@@ -101,29 +101,27 @@ class Client
     /**
      * @param $uri
      * @param null $params
+     *
      * @return array|mixed|null|object
      */
     public function get($uri, $params = null)
     {
-
         try {
-
             $url = $this->buildUrl($uri, $params);
 
             $this->handle = curl_init($url);
 
-            $this->setOptions(array(
+            $this->setOptions([
                 CURLOPT_HTTPAUTH => CURLAUTH_BASIC,
-                CURLOPT_USERPWD => $this->api_key . ":",
-                CURLOPT_RETURNTRANSFER => 1
-            ));
+                CURLOPT_USERPWD => $this->api_key.':',
+                CURLOPT_RETURNTRANSFER => 1,
+            ]);
 
             $this->execute();
 
             $this->close();
 
             return $this->getResponse();
-
         } catch (\Exception $e) {
             echo $e->getMessage();
         }
@@ -132,28 +130,27 @@ class Client
     /**
      * @param $uri
      * @param $params
+     *
      * @return string
      */
     public function buildUrl($uri, $params)
     {
-
         if (isset($params) && count($params)) {
-
             $queryString = http_build_query($params);
 
-            return sprintf("%s%s?%s", $this->base_uri, $uri, $queryString);
+            return sprintf('%s%s?%s', $this->base_uri, $uri, $queryString);
         }
 
-         return sprintf("%s%s", $this->base_uri, $uri);
+        return sprintf('%s%s', $this->base_uri, $uri);
     }
 
     /**
      * @return mixed
+     *
      * @throws \Exception
      */
     public function execute()
     {
-
         $response = curl_exec($this->handle);
 
         if (CURLE_OK !== $this->getErrorCode()) {
@@ -183,11 +180,10 @@ class Client
     }
 
     /**
-     * close Curl
+     * close Curl.
      */
     public function close()
     {
         curl_close($this->handle);
     }
-
 }
