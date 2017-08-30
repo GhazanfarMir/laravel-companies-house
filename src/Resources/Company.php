@@ -100,9 +100,7 @@ class Company extends ResourcesBase
 
             if (count($this->with)) {
                 foreach ($this->with as $resource) {
-
                     if (! in_array($resource, $this->valid_resources)) {
-
                         $valid_resource_string = implode(', ', $this->valid_resources);
 
                         throw new InvalidArgumentException("Invalid resource ($resource). You must provide a valid company resource. e.g. $valid_resource_string.");
@@ -129,9 +127,7 @@ class Company extends ResourcesBase
      */
     public function searchAll($search, $items_per_page = 20, $start_index = 0)
     {
-
         if (! empty($search)) {
-
             $params = [
                 'q' => $search,
                 'items_per_page' => $items_per_page,
