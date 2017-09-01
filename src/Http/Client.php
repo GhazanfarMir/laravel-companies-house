@@ -116,7 +116,6 @@ class Client
             $this->close();
 
             return $this->getResponse();
-
         } catch (\Exception $e) {
             echo $e->getMessage();
         }
@@ -148,7 +147,7 @@ class Client
 
         $this->setOptions([
             CURLOPT_HTTPAUTH => CURLAUTH_BASIC,
-            CURLOPT_USERPWD => $this->api_key . ':',
+            CURLOPT_USERPWD => $this->api_key.':',
             CURLOPT_RETURNTRANSFER => 1,
         ]);
     }
