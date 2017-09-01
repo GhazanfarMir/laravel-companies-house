@@ -109,13 +109,7 @@ class Client
         try {
             $url = $this->buildUrl($uri, $params);
 
-            $this->handle = curl_init($url);
-
-            $this->setOptions([
-                CURLOPT_HTTPAUTH => CURLAUTH_BASIC,
-                CURLOPT_USERPWD => $this->api_key.':',
-                CURLOPT_RETURNTRANSFER => 1,
-            ]);
+            $this->initialise($url);
 
             $this->execute();
 
@@ -142,6 +136,20 @@ class Client
         }
 
         return sprintf('%s%s', $this->base_uri, $uri);
+    }
+
+    /**
+     * @param $url
+     */
+    public function initialise($url)
+    {
+        $this->handle = curl_init($url);
+
+        $this->setOptions([
+            CURLOPT_HTTPAUTH => CURLAUTH_BASIC,
+            CURLOPT_USERPWD => $this->api_key.':',
+            CURLOPT_RETURNTRANSFER => 1,
+        ]);
     }
 
     /**
