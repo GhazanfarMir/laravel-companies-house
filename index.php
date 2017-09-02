@@ -18,42 +18,35 @@ try {
 
     $api = new CompaniesHouseApi($client);
 
-
-
-    $all = $api->company()->searchAll('Ebury Partners');
-
-    $companies = $api->company()->search('Ebury Partners');
-
-    $company = $api->company()->find('07086058')->get();
-
-    $officers = $api->officers()->search('Mir');
-
-    $disqualified = $api->officers()->disqualified()->search('Mir');
-
     // Search all
+    $all = $api->company()->searchAll('Ebury Partners');
     print_r('Search All: ' . $all->items[0]->address_snippet . PHP_EOL);
 
     // Search by name
+    $companies = $api->company()->search('Ebury Partners');
     print_r('Search Company byName: ' . $companies->items[0]->address_snippet . PHP_EOL);
 
     // Search by number
+    $company = $api->company()->find('07086058')->get();
     print_r('Search Company byNumber: ' . $company->company_name . PHP_EOL);
 
     // Search Officers
+    $officers = $api->officers()->search('Mir');
     print_r('Search Officers: ' . $officers->items[0]->title . PHP_EOL);
 
     // Search Disqualified Officers
+    $disqualified = $api->officers()->disqualified()->search('Mir');
     print_r('Search Disqualified Officers: ' . $disqualified->items[0]->title . PHP_EOL);
 
     // company officers
     print_r('Show Company officers: ' . $api->company()->with(['officers'])->find('07086058')->officers()->items[0]->name . PHP_EOL);
 
-
-
-
+    // registered address
     $o = $api->company()->with(array('officers', 'charges', 'registered_office_address'))->find('07086058');
 
-
+    // filing history
+    $history = $api->filingHistory()->list('07086058');
+    print_r('Show Company Filing history: '.$history->items[0]->description);
 
 } catch (Exception $e) {
     echo $e->getMessage();
