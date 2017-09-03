@@ -56,14 +56,17 @@ class CompaniesHouseTest extends TestCase
      */
     public function search_content_type_is_json()
     {
-        if ($this->platform != 'travis') {
-            $response = $this->client->get('search/companies', ['q' => 'Ebury Partners']);
-
-            $response = json_decode($response);
-
-            $this->assertNotEmpty($response->items[0]->title);
+        if ($this->platform == 'travis') {
+            $this->assertTrue(true);
+            return;
         }
-        $this->assertTrue(true);
+
+        $response = $this->client->get('search/companies', ['q' => 'Ebury Partners']);
+
+        $response = json_decode($response);
+
+        $this->assertNotEmpty($response->items[0]->title);
+
     }
 
     /**
@@ -73,13 +76,14 @@ class CompaniesHouseTest extends TestCase
     {
         $name = 'ebury partners';
 
-        if ($this->platform != 'travis') {
-            $companies = $this->api->company()->search($name);
-
-            $this->assertArrayHasKey('address_snippet', (array) $companies->items[0]);
+        if ($this->platform == 'travis') {
+            $this->assertTrue(true);
+            return;
         }
 
-        $this->assertTrue(true);
+        $companies = $this->api->company()->search($name);
+
+        $this->assertArrayHasKey('address_snippet', (array)$companies->items[0]);
     }
 
     /**
@@ -89,15 +93,17 @@ class CompaniesHouseTest extends TestCase
     {
         $number = '07039469';
 
-        if ($this->platform != 'travis') {
-            $company = $this->api->company()->find($number)->get();
-
-            $this->assertArrayHasKey('company_name', (array) $company);
-
-            $this->assertEquals($number, $company->company_number);
+        if ($this->platform == 'travis') {
+            $this->assertTrue(true);
+            return;
         }
 
-        $this->assertTrue(true);
+        $company = $this->api->company()->find($number)->get();
+
+        $this->assertArrayHasKey('company_name', (array)$company);
+
+        $this->assertEquals($number, $company->company_number);
+
     }
 
     /**
@@ -107,13 +113,15 @@ class CompaniesHouseTest extends TestCase
     {
         $officer = 'Ghazanfar';
 
-        if ($this->platform != 'travis') {
-            $officers = $this->api->officers()->search($officer);
-
-            $this->assertArrayHasKey('title', (array) $officers->items[0]);
+        if ($this->platform == 'travis') {
+            $this->assertTrue(true);
+            return;
         }
 
-        $this->assertTrue(true);
+        $officers = $this->api->officers()->search($officer);
+
+        $this->assertArrayHasKey('title', (array)$officers->items[0]);
+
     }
 
     /**
@@ -123,16 +131,18 @@ class CompaniesHouseTest extends TestCase
     {
         $name = 'Mir';
 
-        if ($this->platform != 'travis') {
-            $officers = $this->api->officers()->disqualified()->search($name);
-
-            $this->assertArrayHasKey('title', (array) $officers->items[0]);
-
-            $this->assertArrayHasKey('date_of_birth', (array) $officers->items[0]);
-
-            $this->assertArrayHasKey('address', (array) $officers->items[0]);
+        if ($this->platform == 'travis') {
+            $this->assertTrue(true);
+            return;
         }
 
-        $this->assertTrue(true);
+        $officers = $this->api->officers()->disqualified()->search($name);
+
+        $this->assertArrayHasKey('title', (array)$officers->items[0]);
+
+        $this->assertArrayHasKey('date_of_birth', (array)$officers->items[0]);
+
+        $this->assertArrayHasKey('address', (array)$officers->items[0]);
+
     }
 }

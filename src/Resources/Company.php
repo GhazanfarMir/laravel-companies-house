@@ -80,7 +80,7 @@ class Company extends ResourcesBase
 
             $response = $this->client->get('search/companies', $params);
 
-            return json_decode($response);
+            return $this->response($response);
         } else {
             throw new \InvalidArgumentException('Invalid Argument: You must provide valid company name to search for.');
         }
@@ -136,7 +136,7 @@ class Company extends ResourcesBase
 
             $response = $this->client->get('search/', $params);
 
-            return json_decode($response);
+            return $this->response($response);
         } else {
             throw new \InvalidArgumentException('Invalid Argument: You must provide valid company name to search for.');
         }
@@ -151,7 +151,7 @@ class Company extends ResourcesBase
             return false;
         }
 
-        return json_decode($this->info);
+        return $this->response($this->info);
     }
 
     /**
@@ -163,7 +163,7 @@ class Company extends ResourcesBase
             return [];
         }
 
-        return json_decode($this->officers);
+        return $this->response($this->officers);
     }
 
     /**
@@ -175,7 +175,7 @@ class Company extends ResourcesBase
             return [];
         }
 
-        return json_decode($this->charges);
+        return $this->response($this->charges);
     }
 
     /**
@@ -187,7 +187,7 @@ class Company extends ResourcesBase
             return [];
         }
 
-        return json_decode($this->registered_office_address);
+        return $this->response($this->registered_office_address);
     }
 
     /**

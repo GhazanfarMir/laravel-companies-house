@@ -28,7 +28,7 @@ class FilingHistory extends ResourcesBase
 
             $response = $this->client->get($endpoint, $params);
 
-            return json_decode($response);
+            return $this->response($response);
         } else {
             throw new \InvalidArgumentException('Invalid Argument: You must provide valid company number to search for.');
         }

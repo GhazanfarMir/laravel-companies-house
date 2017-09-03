@@ -53,7 +53,7 @@ class Officers extends ResourcesBase
 
             $response = $this->client->get($this->endpoint, $params);
 
-            return json_decode($response);
+            return $this->response($response);
         } else {
             throw new \InvalidArgumentException('Invalid Argument: You must provide valid officer\'s name to search for.');
         }

@@ -46,7 +46,7 @@ try {
 
     // filing history
     $history = $api->filingHistory()->list('07086058');
-    print_r('Show Company Filing history: '.$history->items[0]->description);
+    print_r('Show Company Filing history: '.$history->items[0]->description . PHP_EOL);
 
 } catch (Exception $e) {
     echo $e->getMessage();
