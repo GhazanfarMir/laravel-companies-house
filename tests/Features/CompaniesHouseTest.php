@@ -58,6 +58,7 @@ class CompaniesHouseTest extends TestCase
     {
         if ($this->platform == 'travis') {
             $this->assertTrue(true);
+
             return;
         }
 
@@ -66,7 +67,6 @@ class CompaniesHouseTest extends TestCase
         $response = json_decode($response);
 
         $this->assertNotEmpty($response->items[0]->title);
-
     }
 
     /**
@@ -78,12 +78,13 @@ class CompaniesHouseTest extends TestCase
 
         if ($this->platform == 'travis') {
             $this->assertTrue(true);
+
             return;
         }
 
         $companies = $this->api->company()->search($name);
 
-        $this->assertArrayHasKey('address_snippet', (array)$companies->items[0]);
+        $this->assertArrayHasKey('address_snippet', (array) $companies->items[0]);
     }
 
     /**
@@ -95,15 +96,15 @@ class CompaniesHouseTest extends TestCase
 
         if ($this->platform == 'travis') {
             $this->assertTrue(true);
+
             return;
         }
 
         $company = $this->api->company()->find($number)->get();
 
-        $this->assertArrayHasKey('company_name', (array)$company);
+        $this->assertArrayHasKey('company_name', (array) $company);
 
         $this->assertEquals($number, $company->company_number);
-
     }
 
     /**
@@ -115,13 +116,13 @@ class CompaniesHouseTest extends TestCase
 
         if ($this->platform == 'travis') {
             $this->assertTrue(true);
+
             return;
         }
 
         $officers = $this->api->officers()->search($officer);
 
-        $this->assertArrayHasKey('title', (array)$officers->items[0]);
-
+        $this->assertArrayHasKey('title', (array) $officers->items[0]);
     }
 
     /**
@@ -133,16 +134,16 @@ class CompaniesHouseTest extends TestCase
 
         if ($this->platform == 'travis') {
             $this->assertTrue(true);
+
             return;
         }
 
         $officers = $this->api->officers()->disqualified()->search($name);
 
-        $this->assertArrayHasKey('title', (array)$officers->items[0]);
+        $this->assertArrayHasKey('title', (array) $officers->items[0]);
 
-        $this->assertArrayHasKey('date_of_birth', (array)$officers->items[0]);
+        $this->assertArrayHasKey('date_of_birth', (array) $officers->items[0]);
 
-        $this->assertArrayHasKey('address', (array)$officers->items[0]);
-
+        $this->assertArrayHasKey('address', (array) $officers->items[0]);
     }
 }

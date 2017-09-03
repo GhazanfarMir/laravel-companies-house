@@ -7,7 +7,6 @@ namespace Ghazanfar\CompaniesHouseApi\Resources;
  */
 class FilingHistory extends ResourcesBase
 {
-
     /**
      * @param $number
      * @param int $items_per_page
@@ -16,9 +15,7 @@ class FilingHistory extends ResourcesBase
      */
     public function list($number, $items_per_page = 20, $start_index = 0)
     {
-
         if (! empty($number)) {
-
             $endpoint = "company/$number/filing-history";
 
             $params = [
