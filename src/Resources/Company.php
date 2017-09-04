@@ -50,7 +50,19 @@ class Company extends ResourcesBase
     /**
      * @var
      */
+    protected $filing_history;
+
+    /**
+     * Get other resources within the array
+     * @var
+     */
     protected $with;
+
+    /**
+     * Get all other resources except the ones in the array
+     * @var
+     */
+    protected $without;
 
     /**
      * @var
@@ -71,16 +83,15 @@ class Company extends ResourcesBase
      */
     public function search($name, $items_per_page = 20, $start_index = 0)
     {
-        if (! empty($name)) {
+        if (!empty($name)) {
             $params = [
                 'q' => $name,
                 'items_per_page' => $items_per_page,
                 'start_index' => $start_index,
             ];
 
-            $response = $this->client->get('search/companies', $params);
+            return $this->client->get('search/companies', $params);
 
-            return $this->response($response);
         } else {
             throw new \InvalidArgumentException('Invalid Argument: You must provide valid company name to search for.');
         }
@@ -95,20 +106,21 @@ class Company extends ResourcesBase
     {
         $base = "company/$number";
 
-        if (! empty($number)) {
+        if (!empty($number)) {
             $this->info = $this->client->get($base);
 
             if (count($this->with)) {
                 foreach ($this->with as $resource) {
-                    if (! in_array($resource, $this->valid_resources)) {
+                    if (!in_array($resource, $this->valid_resources)) {
                         $valid_resource_string = implode(', ', $this->valid_resources);
 
                         throw new InvalidArgumentException("Invalid resource ($resource). You must provide a valid company resource. e.g. $valid_resource_string.");
                     }
 
+                    // endpoint uses hyphens, so we need to adjust hyphens here
                     $endpoint = str_replace('_', '-', $resource);
 
-                    $this->$resource = $this->client->get($base."/$endpoint");
+                    $this->$resource = $this->client->get($base . "/$endpoint");
                 }
             }
 
@@ -136,7 +148,7 @@ class Company extends ResourcesBase
 
             $response = $this->client->get('search/', $params);
 
-            return $this->response($response);
+            return $response;
         } else {
             throw new \InvalidArgumentException('Invalid Argument: You must provide valid company name to search for.');
         }
@@ -151,43 +163,38 @@ class Company extends ResourcesBase
             return false;
         }
 
-        return $this->response($this->info);
+        return $this->info;
     }
 
     /**
-     * @return array
-     */
-    public function officers()
-    {
-        if (empty($this->officers)) {
-            return [];
-        }
-
-        return $this->response($this->officers);
-    }
-
-    /**
-     * @return array|mixed
-     */
-    public function charges()
-    {
-        if (empty($this->charges)) {
-            return [];
-        }
-
-        return $this->response($this->charges);
-    }
-
-    /**
+     * @param $name
+     * @param $arguments
      * @return mixed
      */
-    public function registeredOfficeAddress()
+    public function __call($name, $arguments)
     {
-        if (empty($this->registered_office_address)) {
-            return [];
+
+        $property = $this->normaliseProperties($name);
+        if (property_exists($this, $property)) {
+
+            if (isset($this->$property) && ! empty($this->$property)) {
+                return $this->$property;
+            }
         }
 
-        return $this->response($this->registered_office_address);
+    }
+
+    /**
+     * @param $camel
+     * @param string $splitter
+     * @return string
+     */
+    function normaliseProperties($camel, $splitter = "_")
+    {
+        $camel = preg_replace('/(?!^)[[:upper:]][[:lower:]]/', '$0', preg_replace('/(?!^)[[:upper:]]+/', $splitter . '$0', $camel));
+
+        return strtolower($camel);
+
     }
 
     /**

@@ -42,11 +42,11 @@ try {
     print_r('Show Company officers: ' . $api->company()->with(['officers'])->find('07086058')->officers()->items[0]->name . PHP_EOL);
 
     // registered address
-    $o = $api->company()->with(array('officers', 'charges', 'registered_office_address'))->find('07086058');
+    $o = $api->company()->with(array('officers', 'charges', 'registered_office_address', 'filing_history'))->find('07086058');
+    print_r('Company registered address: ' . $o->registeredOfficeAddress()->address_line_1. PHP_EOL);
 
     // filing history
-    $history = $api->filingHistory()->list('07086058');
-    print_r('Show Company Filing history: '.$history->items[0]->description . PHP_EOL);
+    print_r('Show Company Filing history: '.$o->filingHistory()->items[0]->description . PHP_EOL);
 
 } catch (Exception $e) {
     echo $e->getMessage();

@@ -13,7 +13,7 @@ class FilingHistory extends ResourcesBase
      * @param int $start_index
      * @return array|mixed|null|object
      */
-    public function list($number, $items_per_page = 20, $start_index = 0)
+    public function find($number, $items_per_page = 20, $start_index = 0)
     {
         if (! empty($number)) {
             $endpoint = "company/$number/filing-history";
@@ -23,9 +23,8 @@ class FilingHistory extends ResourcesBase
                 'start_index' => $start_index,
             ];
 
-            $response = $this->client->get($endpoint, $params);
+            return $this->client->get($endpoint, $params);
 
-            return $this->response($response);
         } else {
             throw new \InvalidArgumentException('Invalid Argument: You must provide valid company number to search for.');
         }

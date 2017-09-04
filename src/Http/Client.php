@@ -116,6 +116,7 @@ class Client
             $this->close();
 
             return $this->getResponse();
+
         } catch (\Exception $e) {
             echo $e->getMessage();
         }
@@ -184,7 +185,7 @@ class Client
      */
     public function getResponse()
     {
-        return $this->response;
+        return json_decode($this->response);
     }
 
     /**

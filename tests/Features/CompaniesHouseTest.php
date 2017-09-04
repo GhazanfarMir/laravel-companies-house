@@ -64,8 +64,6 @@ class CompaniesHouseTest extends TestCase
 
         $response = $this->client->get('search/companies', ['q' => 'Ebury Partners']);
 
-        $response = json_decode($response);
-
         $this->assertNotEmpty($response->items[0]->title);
     }
 
@@ -145,5 +143,26 @@ class CompaniesHouseTest extends TestCase
         $this->assertArrayHasKey('date_of_birth', (array) $officers->items[0]);
 
         $this->assertArrayHasKey('address', (array) $officers->items[0]);
+    }
+
+    /**
+     * @test
+     */
+    public function get_list_of_filing_history()
+    {
+        $number = '07039469';
+
+        if ($this->platform == 'travis') {
+            $this->assertTrue(true);
+
+            return;
+        }
+
+        $history = $this->api->filingHistory()->find($number);
+
+        $this->assertArrayHasKey('paper_filed', (array) $history->items[0]);
+
+        $this->assertArrayHasKey('transaction_id', (array) $history->items[0]);
+
     }
 }
