@@ -24,7 +24,6 @@ class FilingHistory extends ResourcesBase
             ];
 
             return $this->client->get($endpoint, $params);
-
         } else {
             throw new \InvalidArgumentException('Invalid Argument: You must provide valid company number to search for.');
         }

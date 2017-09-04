@@ -52,7 +52,6 @@ class Officers extends ResourcesBase
             ];
 
             return $this->client->get($this->endpoint, $params);
-
         } else {
             throw new \InvalidArgumentException('Invalid Argument: You must provide valid officer\'s name to search for.');
         }

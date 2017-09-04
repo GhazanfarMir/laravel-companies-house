@@ -163,6 +163,5 @@ class CompaniesHouseTest extends TestCase
         $this->assertArrayHasKey('paper_filed', (array) $history->items[0]);
 
         $this->assertArrayHasKey('transaction_id', (array) $history->items[0]);
-
     }
 }
