@@ -1,12 +1,13 @@
 <?php
 
-namespace Ghazanfar\CompaniesHouseApi;
+namespace GhazanfarMir\CompaniesHouse;
 
-use Ghazanfar\CompaniesHouseApi\Http\Client;
-use Ghazanfar\CompaniesHouseApi\Resources\Company;
-use Ghazanfar\CompaniesHouseApi\Resources\Officers;
-use Ghazanfar\CompaniesHouseApi\Resources\Documents;
-use Ghazanfar\CompaniesHouseApi\Resources\FilingHistory;
+use GhazanfarMir\CompaniesHouse\Http\Client;
+use GhazanfarMir\CompaniesHouse\Resources\Search;
+use GhazanfarMir\CompaniesHouse\Resources\Company;
+use GhazanfarMir\CompaniesHouse\Resources\Officers;
+use GhazanfarMir\CompaniesHouse\Resources\Documents;
+use GhazanfarMir\CompaniesHouse\Resources\FilingHistory;
 
 /**
  * Class CompaniesHouse.
@@ -58,5 +59,13 @@ class CompaniesHouseApi
     public function filingHistory()
     {
         return new FilingHistory($this->client);
+    }
+
+    /**
+     * @return Search
+     */
+    public function search()
+    {
+        return new Search($this->client);
     }
 }

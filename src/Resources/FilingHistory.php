@@ -1,6 +1,6 @@
 <?php
 
-namespace Ghazanfar\CompaniesHouseApi\Resources;
+namespace GhazanfarMir\CompaniesHouse\Resources;
 
 /**
  * Class FillingHistory.

@@ -1,6 +1,6 @@
 <?php
 
-namespace Ghazanfar\CompaniesHouseApi\Http;
+namespace GhazanfarMir\CompaniesHouse\Http;
 
 /**
  * Class Client.
@@ -11,11 +11,6 @@ class Client
      * @var string
      */
     protected $api_key;
-
-    /**
-     * @var string
-     */
-    protected $base_uri;
 
     /**
      * @var resource
@@ -132,10 +127,10 @@ class Client
         if (isset($params) && count($params)) {
             $queryString = http_build_query($params);
 
-            return sprintf('%s%s?%s', $this->base_uri, $uri, $queryString);
+            return sprintf('%s?%s', $uri, $queryString);
         }
 
-        return sprintf('%s%s', $this->base_uri, $uri);
+        return sprintf('%s', $uri);
     }
 
     /**

@@ -1,6 +1,6 @@
 <?php
 
-namespace Ghazanfar\CompaniesHouseApi\Resources;
+namespace GhazanfarMir\CompaniesHouse\Resources;
 
 use Prophecy\Exception\InvalidArgumentException;
 
@@ -74,27 +74,6 @@ class Company extends ResourcesBase
         'charges',
     ];
 
-    /**
-     * @param $name
-     * @param int $items_per_page
-     * @param int $start_index
-     *
-     * @return array|mixed|null|object
-     */
-    public function search($name, $items_per_page = 20, $start_index = 0)
-    {
-        if (! empty($name)) {
-            $params = [
-                'q' => $name,
-                'items_per_page' => $items_per_page,
-                'start_index' => $start_index,
-            ];
-
-            return $this->client->get('search/companies', $params);
-        } else {
-            throw new \InvalidArgumentException('Invalid Argument: You must provide valid company name to search for.');
-        }
-    }
 
     /**
      * @param $number
