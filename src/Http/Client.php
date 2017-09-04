@@ -116,7 +116,6 @@ class Client
             $this->close();
 
             return $this->getResponse();
-
         } catch (\Exception $e) {
             echo $e->getMessage();
         }
