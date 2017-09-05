@@ -15,7 +15,7 @@ class SearchTest extends CompaniesHouseBaseTest
             return;
         }
 
-        $response = $this->client->get($this->base_uri . 'search/companies', ['q' => 'Ebury Partners']);
+        $response = $this->client->get($this->base_uri.'search/companies', ['q' => 'Ebury Partners']);
 
         $this->assertNotEmpty($response->items[0]->title);
     }
@@ -35,11 +35,10 @@ class SearchTest extends CompaniesHouseBaseTest
 
         $companies = $this->api->search()->all($name);
 
-        $this->assertArrayHasKey('address_snippet', (array)$companies->items[0]);
+        $this->assertArrayHasKey('address_snippet', (array) $companies->items[0]);
 
-        $this->assertArrayHasKey('total_results', (array)$companies);
+        $this->assertArrayHasKey('total_results', (array) $companies);
     }
-
 
     /**
      * @test
@@ -56,7 +55,7 @@ class SearchTest extends CompaniesHouseBaseTest
 
         $companies = $this->api->search()->companies($name);
 
-        $this->assertArrayHasKey('address_snippet', (array)$companies->items[0]);
+        $this->assertArrayHasKey('address_snippet', (array) $companies->items[0]);
     }
 
     /**
@@ -74,7 +73,7 @@ class SearchTest extends CompaniesHouseBaseTest
 
         $officers = $this->api->search()->officers($officer);
 
-        $this->assertArrayHasKey('title', (array)$officers->items[0]);
+        $this->assertArrayHasKey('title', (array) $officers->items[0]);
     }
 
     /**
@@ -92,10 +91,10 @@ class SearchTest extends CompaniesHouseBaseTest
 
         $officers = $this->api->search()->disqualified_officers($name);
 
-        $this->assertArrayHasKey('title', (array)$officers->items[0]);
+        $this->assertArrayHasKey('title', (array) $officers->items[0]);
 
-        $this->assertArrayHasKey('date_of_birth', (array)$officers->items[0]);
+        $this->assertArrayHasKey('date_of_birth', (array) $officers->items[0]);
 
-        $this->assertArrayHasKey('address', (array)$officers->items[0]);
+        $this->assertArrayHasKey('address', (array) $officers->items[0]);
     }
 }

@@ -2,7 +2,6 @@
 
 namespace GhazanfarMir\CompaniesHouse\Resources;
 
-
 class Search extends ResourcesBase
 {
     /**
@@ -38,7 +37,6 @@ class Search extends ResourcesBase
      */
     public function companies($keyword, $items_per_page = 20, $start_index = 0)
     {
-
         $uri = $this->buildResourceUrl('/search/companies/');
 
         if (! empty($keyword)) {
@@ -54,7 +52,6 @@ class Search extends ResourcesBase
         }
     }
 
-
     /**
      * @param $keyword
      * @param int $items_per_page
@@ -64,7 +61,6 @@ class Search extends ResourcesBase
      */
     public function officers($keyword, $items_per_page = 20, $start_index = 0)
     {
-
         $uri = $this->buildResourceUrl('/search/officers/');
 
         if (! empty($keyword)) {
@@ -89,7 +85,6 @@ class Search extends ResourcesBase
      */
     public function disqualified_officers($keyword, $items_per_page = 20, $start_index = 0)
     {
-
         $uri = '/search/disqualified-officers/';
 
         if (! empty($keyword)) {
@@ -99,7 +94,7 @@ class Search extends ResourcesBase
                 'start_index' => $start_index,
             ];
 
-            return $this->client->get($this->base_uri . $uri, $params);
+            return $this->client->get($this->base_uri.$uri, $params);
         } else {
             throw new \InvalidArgumentException('Invalid Argument: You must provide valid company name to search for.');
         }

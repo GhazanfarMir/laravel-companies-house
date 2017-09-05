@@ -108,7 +108,6 @@ class Client
      */
     public function get($uri, $params = null)
     {
-
         $url = $this->buildUrl($uri, $params);
 
         $this->initialise($url);
@@ -118,7 +117,6 @@ class Client
         $this->close();
 
         return $this->getResponse();
-
     }
 
     /**
@@ -147,7 +145,7 @@ class Client
 
         $this->setOptions([
             CURLOPT_HTTPAUTH => CURLAUTH_BASIC,
-            CURLOPT_USERPWD => $this->api_key . ':',
+            CURLOPT_USERPWD => $this->api_key.':',
             CURLOPT_RETURNTRANSFER => 1,
         ]);
     }
@@ -216,7 +214,6 @@ class Client
      */
     public function getInfo($option)
     {
-
         if (empty($option) || $option === '') {
             return curl_getinfo($this->handle);
         }
@@ -231,6 +228,4 @@ class Client
     {
         curl_close($this->handle);
     }
-
-
 }

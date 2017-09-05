@@ -51,6 +51,6 @@ class ResourcesBase
      */
     protected function buildResourceUrl($uri)
     {
-        return $this->base_uri . $uri;
+        return $this->base_uri.$uri;
     }
 }
