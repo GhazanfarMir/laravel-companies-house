@@ -1,5 +1,5 @@
 {
-    "name": "ghazanfarmir/companies-house-laravel",
+    "name": "ghazanfarmir/laravel-companies-house",
     "description": "This the Laravel Service Provider package to access CompaniesHouse API within your Laravel application.",
     "keywords": ["companies-house", "laravel"],
     "type": "library",
