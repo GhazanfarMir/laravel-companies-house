@@ -2,10 +2,8 @@
 
 namespace GhazanfarMir\CompaniesHouse\Tests\Features;
 
-
 class CompanyTest extends CompaniesHouseBaseTest
 {
-
     /**
      * @var string
      */
@@ -17,7 +15,6 @@ class CompanyTest extends CompaniesHouseBaseTest
      */
     public function exception_is_thrown_if_get_is_called_directly()
     {
-
         $this->api->company()->get();
     }
 
@@ -27,7 +24,6 @@ class CompanyTest extends CompaniesHouseBaseTest
      */
     public function exception_is_thrown_if_registered_office_address_is_called_directly()
     {
-
         $this->api->company()->registered_office_address();
     }
 
@@ -85,7 +81,6 @@ class CompanyTest extends CompaniesHouseBaseTest
         $this->assertArrayHasKey('total_results', (array) $officers);
         $this->assertArrayHasKey('name', (array) $officers->items[0]);
         $this->assertArrayHasKey('address', (array) $officers->items[0]);
-
     }
 
     /**
@@ -102,7 +97,6 @@ class CompanyTest extends CompaniesHouseBaseTest
         $establishments = $this->api->company()->find($this->number)->uk_establishments();
 
         $this->assertArrayHasKey('items', (array) $establishments);
-
     }
 
     /**
@@ -118,7 +112,6 @@ class CompanyTest extends CompaniesHouseBaseTest
         }
 
         $this->api->company()->find($this->number)->registers();
-
     }
 
     /**
@@ -134,6 +127,5 @@ class CompanyTest extends CompaniesHouseBaseTest
         }
 
         $this->api->company()->find($this->number)->exemptions();
-
     }
 }

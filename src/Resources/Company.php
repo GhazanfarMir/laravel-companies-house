@@ -20,14 +20,11 @@ class Company extends ResourcesBase
      */
     public function find($number)
     {
-        if (!empty($number)) {
-
+        if (! empty($number)) {
             $this->number = $number;
 
             return $this;
-
         } else {
-
             throw new \InvalidArgumentException('Company number can not be empty, you must provide a company number.');
         }
     }
@@ -37,9 +34,8 @@ class Company extends ResourcesBase
      */
     public function get()
     {
-        if (!empty($this->number)) {
-
-            $url = $this->buildResourceUrl('/company/' . $this->number);
+        if (! empty($this->number)) {
+            $url = $this->buildResourceUrl('/company/'.$this->number);
 
             $response = $this->client->get($url);
 
@@ -54,8 +50,7 @@ class Company extends ResourcesBase
      */
     public function registered_office_address()
     {
-        if (!empty($this->number)) {
-
+        if (! empty($this->number)) {
             $uri = "/company/{$this->number}/registered-office-address";
 
             $url = $this->buildResourceUrl($uri);
@@ -73,8 +68,7 @@ class Company extends ResourcesBase
      */
     public function officers()
     {
-        if (!empty($this->number)) {
-
+        if (! empty($this->number)) {
             $uri = "/company/{$this->number}/officers";
 
             $url = $this->buildResourceUrl($uri);
@@ -92,8 +86,7 @@ class Company extends ResourcesBase
      */
     public function uk_establishments()
     {
-        if (!empty($this->number)) {
-
+        if (! empty($this->number)) {
             $uri = "/company/{$this->number}/uk-establishments";
 
             $url = $this->buildResourceUrl($uri);
@@ -111,8 +104,7 @@ class Company extends ResourcesBase
      */
     public function registers()
     {
-        if (!empty($this->number)) {
-
+        if (! empty($this->number)) {
             $uri = "/company/{$this->number}/registers";
 
             $url = $this->buildResourceUrl($uri);
@@ -130,8 +122,7 @@ class Company extends ResourcesBase
      */
     public function exemptions()
     {
-        if (!empty($this->number)) {
-
+        if (! empty($this->number)) {
             $uri = "/company/{$this->number}/exemptions";
 
             $url = $this->buildResourceUrl($uri);
