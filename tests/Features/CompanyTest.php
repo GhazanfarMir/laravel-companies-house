@@ -112,7 +112,7 @@ class CompanyTest extends CompaniesHouseBaseTest
     public function get_company_registers()
     {
         if ($this->platform == 'travis') {
-            $this->assertTrue(true);
+            throw new \GhazanfarMir\CompaniesHouse\Exceptions\InvalidResourceException;
 
             return;
         }
@@ -128,7 +128,7 @@ class CompanyTest extends CompaniesHouseBaseTest
     public function get_company_exemptions()
     {
         if ($this->platform == 'travis') {
-            $this->assertTrue(true);
+            throw new \GhazanfarMir\CompaniesHouse\Exceptions\InvalidResourceException;
 
             return;
         }
