@@ -2,6 +2,6 @@
 
 namespace GhazanfarMir\CompaniesHouse\Exceptions;
 
-class ApiKeyException extends \Exception
+class ApiKeyException extends CompaniesHouseException
 {
 }

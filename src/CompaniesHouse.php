@@ -12,7 +12,7 @@ use GhazanfarMir\CompaniesHouse\Resources\FilingHistory;
 /**
  * Class CompaniesHouse.
  */
-class CompaniesHouseApi
+class CompaniesHouse
 {
     /**
      * @var

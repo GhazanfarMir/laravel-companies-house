@@ -2,7 +2,7 @@
 
 //error_reporting(0);
 
-use GhazanfarMir\CompaniesHouse\CompaniesHouseApi;
+use GhazanfarMir\CompaniesHouse\CompaniesHouse;
 use GhazanfarMir\CompaniesHouse\Http\Client;
 
 include 'vendor/autoload.php';
@@ -15,7 +15,7 @@ try {
 
     $client = new Client($base_uri, $api_key);
 
-    $api = new CompaniesHouseApi($client);
+    $api = new CompaniesHouse($client);
 
     $company = 'Ebury Partners';
 

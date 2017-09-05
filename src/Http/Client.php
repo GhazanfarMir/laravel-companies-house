@@ -2,6 +2,8 @@
 
 namespace GhazanfarMir\CompaniesHouse\Http;
 
+use GhazanfarMir\CompaniesHouse\Exceptions\InvalidResourceException;
+
 /**
  * Class Client.
  */
@@ -11,6 +13,11 @@ class Client
      * @var string
      */
     protected $api_key;
+
+    /**
+     * @var
+     */
+    protected $base_uri;
 
     /**
      * @var resource
@@ -101,19 +108,17 @@ class Client
      */
     public function get($uri, $params = null)
     {
-        try {
-            $url = $this->buildUrl($uri, $params);
 
-            $this->initialise($url);
+        $url = $this->buildUrl($uri, $params);
 
-            $this->execute();
+        $this->initialise($url);
 
-            $this->close();
+        $this->execute();
 
-            return $this->getResponse();
-        } catch (\Exception $e) {
-            echo $e->getMessage();
-        }
+        $this->close();
+
+        return $this->getResponse();
+
     }
 
     /**
@@ -142,7 +147,7 @@ class Client
 
         $this->setOptions([
             CURLOPT_HTTPAUTH => CURLAUTH_BASIC,
-            CURLOPT_USERPWD => $this->api_key.':',
+            CURLOPT_USERPWD => $this->api_key . ':',
             CURLOPT_RETURNTRANSFER => 1,
         ]);
     }
@@ -161,6 +166,13 @@ class Client
                 sprintf('An error (%d) occurred while executing the cURL request.', $this->getErrorCode())
             );
         }
+
+        if (200 !== $this->getStatusCode()) {
+            throw new InvalidResourceException(
+                sprintf('An error with status code (%d) has occurred while executing the cURL request.', $this->getStatusCode())
+            );
+        }
+
         $this->response = $response;
 
         return $this;
@@ -175,11 +187,41 @@ class Client
     }
 
     /**
+     * @return string
+     */
+    public function getErrorMessage()
+    {
+        return curl_error($this->handle);
+    }
+
+    /**
      * @return mixed
      */
     public function getResponse()
     {
         return json_decode($this->response);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStatusCode()
+    {
+        return curl_getinfo($this->handle, CURLINFO_HTTP_CODE);
+    }
+
+    /**
+     * @param $option
+     * @return mixed
+     */
+    public function getInfo($option)
+    {
+
+        if (empty($option) || $option === '') {
+            return curl_getinfo($this->handle);
+        }
+
+        return curl_getinfo($this->handle, $option);
     }
 
     /**
@@ -189,4 +231,6 @@ class Client
     {
         curl_close($this->handle);
     }
+
+
 }

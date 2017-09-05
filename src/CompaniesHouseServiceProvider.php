@@ -5,7 +5,7 @@ namespace GhazanfarMir\CompaniesHouse;
 use Illuminate\Support\ServiceProvider;
 use GhazanfarMir\CompaniesHouse\Http\Client;
 
-class CompaniesHouseApiServiceProvider extends ServiceProvider
+class CompaniesHouseServiceProvider extends ServiceProvider
 {
     /**
      * Indicates if loading of the provider is deferred.

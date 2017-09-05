@@ -2,6 +2,6 @@
 
 namespace GhazanfarMir\CompaniesHouse\Exceptions;
 
-class InvalidResourceException extends \Exception
+class InvalidResourceException extends CompaniesHouseException
 {
 }
