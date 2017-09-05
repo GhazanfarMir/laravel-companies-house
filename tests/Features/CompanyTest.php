@@ -107,7 +107,6 @@ class CompanyTest extends CompaniesHouseBaseTest
     {
         if ($this->platform == 'travis') {
             throw new \GhazanfarMir\CompaniesHouse\Exceptions\InvalidResourceException;
-
             return;
         }
 
@@ -122,7 +121,6 @@ class CompanyTest extends CompaniesHouseBaseTest
     {
         if ($this->platform == 'travis') {
             throw new \GhazanfarMir\CompaniesHouse\Exceptions\InvalidResourceException;
-
             return;
         }
 
