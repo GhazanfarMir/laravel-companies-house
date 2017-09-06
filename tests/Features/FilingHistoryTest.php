@@ -2,7 +2,6 @@
 
 namespace GhazanfarMir\CompaniesHouse\Tests\Features;
 
-
 class FilingHistoryTest extends CompaniesHouseBaseTest
 {
     /**
@@ -25,7 +24,6 @@ class FilingHistoryTest extends CompaniesHouseBaseTest
         $this->assertArrayHasKey('total_count', (array) $history);
         $this->assertArrayHasKey('description', (array) $history->items[0]);
         $this->assertArrayHasKey('transaction_id', (array) $history->items[0]);
-
     }
 
     /**
@@ -47,5 +45,4 @@ class FilingHistoryTest extends CompaniesHouseBaseTest
         $this->assertArrayHasKey('transaction_id', (array) $transaction);
         $this->assertEquals($transaction->transaction_id, $transactionId);
     }
-
 }

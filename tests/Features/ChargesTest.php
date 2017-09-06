@@ -4,7 +4,6 @@ namespace GhazanfarMir\CompaniesHouse\Tests\Features;
 
 class ChargesTest extends CompaniesHouseBaseTest
 {
-
     /**
      * @var string
      */
@@ -25,7 +24,6 @@ class ChargesTest extends CompaniesHouseBaseTest
         $this->assertArrayHasKey('unfiltered_count', (array) $charges);
         $this->assertArrayHasKey('delivered_on', (array) $charges->items[0]);
         $this->assertArrayHasKey('persons_entitled', (array) $charges->items[0]);
-
     }
 
     /**
@@ -46,5 +44,4 @@ class ChargesTest extends CompaniesHouseBaseTest
         $this->assertArrayHasKey('transactions', (array) $charges);
         $this->assertArrayHasKey('particulars', (array) $charges);
     }
-
 }
