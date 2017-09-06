@@ -22,6 +22,11 @@
             "GhazanfarMir\\CompaniesHouse\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "GhazanfarMir\\CompaniesHouse\\Tests\\": "tests/"
+        }
+    },
     "minimum-stability": "stable",
     "extra": {
         "laravel": {

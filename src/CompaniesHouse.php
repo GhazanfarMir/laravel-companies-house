@@ -3,11 +3,10 @@
 namespace GhazanfarMir\CompaniesHouse;
 
 use GhazanfarMir\CompaniesHouse\Http\Client;
-use GhazanfarMir\CompaniesHouse\Resources\Search;
+use GhazanfarMir\CompaniesHouse\Resources\Charges;
 use GhazanfarMir\CompaniesHouse\Resources\Company;
-use GhazanfarMir\CompaniesHouse\Resources\Officers;
-use GhazanfarMir\CompaniesHouse\Resources\Documents;
 use GhazanfarMir\CompaniesHouse\Resources\FilingHistory;
+use GhazanfarMir\CompaniesHouse\Resources\Search;
 
 /**
  * Class CompaniesHouse.
@@ -38,34 +37,28 @@ class CompaniesHouse
     }
 
     /**
-     * @return Officers
-     */
-    public function officers()
-    {
-        return new Officers($this->client);
-    }
-
-    /**
-     * @return Documents
-     */
-    public function documents()
-    {
-        return new Documents($this->client);
-    }
-
-    /**
-     * @return FilingHistory
-     */
-    public function filingHistory()
-    {
-        return new FilingHistory($this->client);
-    }
-
-    /**
      * @return Search
      */
     public function search()
     {
         return new Search($this->client);
+    }
+
+    /**
+     * @param $number
+     * @return FilingHistory
+     */
+    public function filingHistory($number)
+    {
+        return new FilingHistory($this->client, $number);
+    }
+
+    /**
+     * @param $number
+     * @return Charges
+     */
+    public function charges($number)
+    {
+        return new Charges($this->client, $number);
     }
 }
