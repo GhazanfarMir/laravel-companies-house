@@ -16,6 +16,7 @@ class ChargesTest extends CompaniesHouseBaseTest
     public function get_company_charges()
     {
         if ($this->platform == 'travis') {
+            $this->assertTrue(true);
             return;
         }
 
@@ -35,6 +36,7 @@ class ChargesTest extends CompaniesHouseBaseTest
         $chargesId = 'kCCyVBzHTmTBbsMxWth2GeLy4x8';
 
         if ($this->platform == 'travis') {
+            $this->assertTrue(true);
             return;
         }
 

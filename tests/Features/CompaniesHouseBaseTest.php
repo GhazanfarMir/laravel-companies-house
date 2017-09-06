@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 use GhazanfarMir\CompaniesHouse\Http\Client;
 use GhazanfarMir\CompaniesHouse\CompaniesHouse;
 
-class CompaniesHouseBaseTest extends TestCase
+abstract class CompaniesHouseBaseTest extends TestCase
 {
     /**
      * @var string
