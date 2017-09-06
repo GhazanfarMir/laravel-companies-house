@@ -52,8 +52,7 @@ class Charges extends ResourcesBase
      */
     public function find($chargeId)
     {
-        if(empty($chargeId))
-        {
+        if (empty($chargeId)) {
             throw new \InvalidArgumentException('You must provide a ChargesId.');
         }
 
@@ -67,5 +66,4 @@ class Charges extends ResourcesBase
             throw new \InvalidArgumentException('Invalid Argument: You must provide valid company number to search for.');
         }
     }
-
 }

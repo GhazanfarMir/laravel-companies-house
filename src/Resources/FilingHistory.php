@@ -56,8 +56,7 @@ class FilingHistory extends ResourcesBase
      */
     public function find($transaction_id)
     {
-        if(empty($transaction_id))
-        {
+        if (empty($transaction_id)) {
             throw new InvalidArgumentException('You must provide a transactionId.');
         }
 
