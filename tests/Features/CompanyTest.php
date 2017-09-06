@@ -10,24 +10,6 @@ class CompanyTest extends CompaniesHouseBaseTest
     protected $number = '07086058';
 
     /**
-     * @expectedException \BadMethodCallException
-     * @test
-     */
-    public function exception_is_thrown_if_get_is_called_directly()
-    {
-        $this->api->company()->get();
-    }
-
-    /**
-     * @expectedException \BadMethodCallException
-     * @test
-     */
-    public function exception_is_thrown_if_registered_office_address_is_called_directly()
-    {
-        $this->api->company()->registered_office_address();
-    }
-
-    /**
      * @test
      */
     public function get_company_profile_by_company_number()
@@ -38,7 +20,7 @@ class CompanyTest extends CompaniesHouseBaseTest
             return;
         }
 
-        $companies = $this->api->company()->find($this->number)->get();
+        $companies = $this->api->company($this->number)->get();
 
         $this->assertArrayHasKey('company_name', (array) $companies);
 
@@ -56,7 +38,7 @@ class CompanyTest extends CompaniesHouseBaseTest
             return;
         }
 
-        $address = (array) $this->api->company()->find($this->number)->registered_office_address();
+        $address = (array) $this->api->company($this->number)->registered_office_address();
 
         $this->assertArrayHasKey('postal_code', $address);
         $this->assertArrayHasKey('country', $address);
@@ -76,7 +58,7 @@ class CompanyTest extends CompaniesHouseBaseTest
             return;
         }
 
-        $officers = $this->api->company()->find($this->number)->officers();
+        $officers = $this->api->company($this->number)->officers();
 
         $this->assertArrayHasKey('total_results', (array) $officers);
         $this->assertArrayHasKey('name', (array) $officers->items[0]);
@@ -94,7 +76,7 @@ class CompanyTest extends CompaniesHouseBaseTest
             return;
         }
 
-        $establishments = $this->api->company()->find($this->number)->uk_establishments();
+        $establishments = $this->api->company($this->number)->uk_establishments();
 
         $this->assertArrayHasKey('items', (array) $establishments);
     }
@@ -110,7 +92,7 @@ class CompanyTest extends CompaniesHouseBaseTest
             return;
         }
 
-        $this->api->company()->find($this->number)->registers();
+        $this->api->company($this->number)->registers();
     }
 
     /**
@@ -124,6 +106,6 @@ class CompanyTest extends CompaniesHouseBaseTest
             return;
         }
 
-        $this->api->company()->find($this->number)->exemptions();
+        $this->api->company($this->number)->exemptions();
     }
 }

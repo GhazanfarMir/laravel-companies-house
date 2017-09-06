@@ -29,11 +29,12 @@ class CompaniesHouse
     }
 
     /**
+     * @param $number
      * @return Company
      */
-    public function company()
+    public function company($number)
     {
-        return new Company($this->client);
+        return new Company($this->client, $number);
     }
 
     /**

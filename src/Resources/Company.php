@@ -2,31 +2,28 @@
 
 namespace GhazanfarMir\CompaniesHouse\Resources;
 
+use GhazanfarMir\CompaniesHouse\Http\Client;
+
 /**
  * Class Company.
  */
 class Company extends ResourcesBase
 {
     /**
-     * Company number.
      * @var
      */
     protected $number;
 
     /**
+     * Company constructor.
+     * @param Client $client
      * @param $number
-     *
-     * @return $this
      */
-    public function find($number)
+    public function __construct(Client $client, $number)
     {
-        if (! empty($number)) {
-            $this->number = $number;
+        parent::__construct($client);
 
-            return $this;
-        } else {
-            throw new \InvalidArgumentException('Company number can not be empty, you must provide a company number.');
-        }
+        $this->number = $number;
     }
 
     /**
