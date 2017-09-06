@@ -16,6 +16,7 @@ class ChargesTest extends CompaniesHouseBaseTest
     {
         if ($this->platform == 'travis') {
             $this->assertTrue(true);
+
             return;
         }
 
@@ -35,6 +36,7 @@ class ChargesTest extends CompaniesHouseBaseTest
 
         if ($this->platform == 'travis') {
             $this->assertTrue(true);
+
             return;
         }
 
