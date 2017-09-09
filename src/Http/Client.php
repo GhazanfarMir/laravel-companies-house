@@ -103,8 +103,8 @@ class Client
     /**
      * @param $uri
      * @param null $params
-     *
-     * @return array|mixed|null|object
+     * @return mixed
+     * @throws \Exception
      */
     public function get($uri, $params = null)
     {
@@ -138,9 +138,14 @@ class Client
 
     /**
      * @param $url
+     * @throws \Exception
      */
     public function initialise($url)
     {
+        if(!function_exists(curl_init)) {
+            throw new \Exception('Curl is not currently installed on the machine. You must install Curl to be able to use this package.');
+        }
+
         $this->handle = curl_init($url);
 
         $this->setOptions([
