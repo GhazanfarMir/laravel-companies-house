@@ -142,7 +142,7 @@ class Client
      */
     public function initialise($url)
     {
-        if(!function_exists(curl_init)) {
+        if(! function_exists('curl_init')) {
             throw new \Exception('Curl is not currently installed on the machine. You must install Curl to be able to use this package.');
         }
 
@@ -156,8 +156,8 @@ class Client
     }
 
     /**
-     * @return mixed
-     *
+     * @return $this
+     * @throws InvalidResourceException
      * @throws \Exception
      */
     public function execute()

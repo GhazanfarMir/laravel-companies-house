@@ -2,6 +2,7 @@
 
 namespace GhazanfarMir\CompaniesHouse\Resources;
 
+use BadMethodCallException;
 use GhazanfarMir\CompaniesHouse\Http\Client;
 
 /**
@@ -27,7 +28,8 @@ class Company extends ResourcesBase
     }
 
     /**
-     * @return array|mixed|null|object
+     * @return mixed
+     * @throws \Exception
      */
     public function get()
     {
@@ -38,12 +40,13 @@ class Company extends ResourcesBase
 
             return $response;
         } else {
-            throw new \BadMethodCallException('Company number is not provided yet.');
+            throw new BadMethodCallException('Company number is not provided yet.');
         }
     }
 
     /**
-     * @test
+     * @return mixed
+     * @throws \Exception
      */
     public function registered_office_address()
     {
@@ -56,12 +59,13 @@ class Company extends ResourcesBase
 
             return $response;
         } else {
-            throw new \BadMethodCallException('Company number is not provided yet.');
+            throw new BadMethodCallException('Company number is not provided yet.');
         }
     }
 
     /**
      * @return array|mixed|null|object
+     * @throws \Exception
      */
     public function officers()
     {
@@ -74,12 +78,13 @@ class Company extends ResourcesBase
 
             return $response;
         } else {
-            throw new \BadMethodCallException('Company number is not provided yet.');
+            throw new BadMethodCallException('Company number is not provided yet.');
         }
     }
 
     /**
      * @return array|mixed|null|object
+     * @throws \Exception
      */
     public function uk_establishments()
     {
@@ -92,12 +97,13 @@ class Company extends ResourcesBase
 
             return $response;
         } else {
-            throw new \BadMethodCallException('Company number is not provided yet.');
+            throw new BadMethodCallException('Company number is not provided yet.');
         }
     }
 
     /**
      * @return array|mixed|null|object
+     * @throws \Exception
      */
     public function registers()
     {
@@ -110,12 +116,13 @@ class Company extends ResourcesBase
 
             return $response;
         } else {
-            throw new \BadMethodCallException('Company number is not provided yet.');
+            throw new BadMethodCallException('Company number is not provided yet.');
         }
     }
 
     /**
      * @return array|mixed|null|object
+     * @throws \Exception
      */
     public function exemptions()
     {
@@ -128,7 +135,7 @@ class Company extends ResourcesBase
 
             return $response;
         } else {
-            throw new \BadMethodCallException('Company number is not provided yet.');
+            throw new BadMethodCallException('Company number is not provided yet.');
         }
     }
 }
