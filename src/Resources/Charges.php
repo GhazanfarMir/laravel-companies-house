@@ -3,12 +3,8 @@
 namespace GhazanfarMir\CompaniesHouse\Resources;
 
 use GhazanfarMir\CompaniesHouse\Http\Client;
-use Prophecy\Exception\InvalidArgumentException;
 
-/**
- * Class FillingHistory.
- */
-class FilingHistory extends ResourcesBase
+class Charges extends ResourcesBase
 {
     /**
      * @var
@@ -16,7 +12,7 @@ class FilingHistory extends ResourcesBase
     protected $number;
 
     /**
-     * FilingHistory constructor.
+     * Charges constructor.
      * @param Client $client
      * @param $number
      */
@@ -35,7 +31,7 @@ class FilingHistory extends ResourcesBase
     public function all($items_per_page = 20, $start_index = 0)
     {
         if (! empty($this->number)) {
-            $uri = "/company/$this->number/filing-history";
+            $uri = "/company/$this->number/charges";
 
             $url = $this->buildResourceUrl($uri);
 
@@ -51,23 +47,23 @@ class FilingHistory extends ResourcesBase
     }
 
     /**
-     * @param $transaction_id
+     * @param $chargeId
      * @return array|mixed|null|object
      */
-    public function find($transaction_id)
+    public function find($chargeId)
     {
-        if (empty($transaction_id)) {
-            throw new InvalidArgumentException('You must provide a transactionId.');
+        if (empty($chargeId)) {
+            throw new \InvalidArgumentException('You must provide a ChargesId.');
         }
 
         if (! empty($this->number)) {
-            $uri = "/company/$this->number/filing-history/$transaction_id";
+            $uri = "/company/$this->number/charges/$chargeId";
 
             $url = $this->buildResourceUrl($uri);
 
             return $this->client->get($url);
         } else {
-            throw new InvalidArgumentException('Invalid Argument: You must provide valid company number to search for.');
+            throw new \InvalidArgumentException('Invalid Argument: You must provide valid company number to search for.');
         }
     }
 }

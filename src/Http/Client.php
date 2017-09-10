@@ -1,6 +1,8 @@
 <?php
 
-namespace Ghazanfar\CompaniesHouseApi\Http;
+namespace GhazanfarMir\CompaniesHouse\Http;
+
+use GhazanfarMir\CompaniesHouse\Exceptions\InvalidResourceException;
 
 /**
  * Class Client.
@@ -13,7 +15,7 @@ class Client
     protected $api_key;
 
     /**
-     * @var string
+     * @var
      */
     protected $base_uri;
 
@@ -101,24 +103,20 @@ class Client
     /**
      * @param $uri
      * @param null $params
-     *
-     * @return array|mixed|null|object
+     * @return mixed
+     * @throws \Exception
      */
     public function get($uri, $params = null)
     {
-        try {
-            $url = $this->buildUrl($uri, $params);
+        $url = $this->buildUrl($uri, $params);
 
-            $this->initialise($url);
+        $this->initialise($url);
 
-            $this->execute();
+        $this->execute();
 
-            $this->close();
+        $this->close();
 
-            return $this->getResponse();
-        } catch (\Exception $e) {
-            echo $e->getMessage();
-        }
+        return $this->getResponse();
     }
 
     /**
@@ -132,17 +130,22 @@ class Client
         if (isset($params) && count($params)) {
             $queryString = http_build_query($params);
 
-            return sprintf('%s%s?%s', $this->base_uri, $uri, $queryString);
+            return sprintf('%s?%s', $uri, $queryString);
         }
 
-        return sprintf('%s%s', $this->base_uri, $uri);
+        return sprintf('%s', $uri);
     }
 
     /**
      * @param $url
+     * @throws \Exception
      */
     public function initialise($url)
     {
+        if (! function_exists('curl_init')) {
+            throw new \Exception('Curl is not currently installed on the machine. You must install Curl to be able to use this package.');
+        }
+
         $this->handle = curl_init($url);
 
         $this->setOptions([
@@ -153,8 +156,8 @@ class Client
     }
 
     /**
-     * @return mixed
-     *
+     * @return $this
+     * @throws InvalidResourceException
      * @throws \Exception
      */
     public function execute()
@@ -166,6 +169,13 @@ class Client
                 sprintf('An error (%d) occurred while executing the cURL request.', $this->getErrorCode())
             );
         }
+
+        if (200 !== $this->getStatusCode()) {
+            throw new InvalidResourceException(
+                sprintf('An error with status code (%d) has occurred while executing the cURL request.', $this->getStatusCode())
+            );
+        }
+
         $this->response = $response;
 
         return $this;
@@ -180,11 +190,40 @@ class Client
     }
 
     /**
+     * @return string
+     */
+    public function getErrorMessage()
+    {
+        return curl_error($this->handle);
+    }
+
+    /**
      * @return mixed
      */
     public function getResponse()
     {
         return json_decode($this->response);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStatusCode()
+    {
+        return curl_getinfo($this->handle, CURLINFO_HTTP_CODE);
+    }
+
+    /**
+     * @param $option
+     * @return mixed
+     */
+    public function getInfo($option)
+    {
+        if (empty($option) || $option === '') {
+            return curl_getinfo($this->handle);
+        }
+
+        return curl_getinfo($this->handle, $option);
     }
 
     /**

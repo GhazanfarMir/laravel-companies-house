@@ -1,11 +1,11 @@
 <?php
 
-namespace Ghazanfar\CompaniesHouseApi;
+namespace GhazanfarMir\CompaniesHouse;
 
 use Illuminate\Support\ServiceProvider;
-use Ghazanfar\CompaniesHouseApi\Http\Client;
+use GhazanfarMir\CompaniesHouse\Http\Client;
 
-class CompaniesHouseApiServiceProvider extends ServiceProvider
+class CompaniesHouseServiceProvider extends ServiceProvider
 {
     /**
      * Indicates if loading of the provider is deferred.
@@ -26,7 +26,7 @@ class CompaniesHouseApiServiceProvider extends ServiceProvider
 
             $client = new Client($base_uri, $api_key);
 
-            return new CompaniesHouseApi($client);
+            return new CompaniesHouse($client);
         });
     }
 

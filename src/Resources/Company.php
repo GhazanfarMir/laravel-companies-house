@@ -1,8 +1,9 @@
 <?php
 
-namespace Ghazanfar\CompaniesHouseApi\Resources;
+namespace GhazanfarMir\CompaniesHouse\Resources;
 
-use Prophecy\Exception\InvalidArgumentException;
+use BadMethodCallException;
+use GhazanfarMir\CompaniesHouse\Http\Client;
 
 /**
  * Class Company.
@@ -10,201 +11,131 @@ use Prophecy\Exception\InvalidArgumentException;
 class Company extends ResourcesBase
 {
     /**
-     * Company name.
-     * @var
-     */
-    protected $name;
-
-    /**
-     * Company number.
      * @var
      */
     protected $number;
 
     /**
-     * Company officers.
-     * @var
-     */
-    protected $officers;
-
-    /**
-     * @var
-     */
-    protected $info;
-
-    /**
-     * @var
-     */
-    protected $filings;
-
-    /**
-     * @var
-     */
-    protected $documents;
-
-    /**
-     * @var
-     */
-    protected $registered_office_address;
-
-    /**
-     * @var
-     */
-    protected $filing_history;
-
-    /**
-     * Get other resources within the array.
-     * @var
-     */
-    protected $with;
-
-    /**
-     * Get all other resources except the ones in the array.
-     * @var
-     */
-    protected $without;
-
-    /**
-     * @var
-     */
-    protected $valid_resources = [
-        'officers',
-        'filing_history',
-        'registered_office_address',
-        'charges',
-    ];
-
-    /**
-     * @param $name
-     * @param int $items_per_page
-     * @param int $start_index
-     *
-     * @return array|mixed|null|object
-     */
-    public function search($name, $items_per_page = 20, $start_index = 0)
-    {
-        if (! empty($name)) {
-            $params = [
-                'q' => $name,
-                'items_per_page' => $items_per_page,
-                'start_index' => $start_index,
-            ];
-
-            return $this->client->get('search/companies', $params);
-        } else {
-            throw new \InvalidArgumentException('Invalid Argument: You must provide valid company name to search for.');
-        }
-    }
-
-    /**
+     * Company constructor.
+     * @param Client $client
      * @param $number
-     *
-     * @return $this
      */
-    public function find($number)
+    public function __construct(Client $client, $number)
     {
-        $base = "company/$number";
+        parent::__construct($client);
 
-        if (! empty($number)) {
-            $this->info = $this->client->get($base);
-
-            if (count($this->with)) {
-                foreach ($this->with as $resource) {
-                    if (! in_array($resource, $this->valid_resources)) {
-                        $valid_resource_string = implode(', ', $this->valid_resources);
-
-                        throw new InvalidArgumentException("Invalid resource ($resource). You must provide a valid company resource. e.g. $valid_resource_string.");
-                    }
-
-                    // endpoint uses hyphens, so we need to adjust hyphens here
-                    $endpoint = str_replace('_', '-', $resource);
-
-                    $this->$resource = $this->client->get($base."/$endpoint");
-                }
-            }
-
-            return $this;
-        } else {
-            throw new \InvalidArgumentException('Missing Search Term: Company number can not be empty, you must provide a company number to get profile.');
-        }
+        $this->number = $number;
     }
 
     /**
-     * @param $search
-     * @param $items_per_page
-     * @param $start_index
-     *
-     * @return array|mixed|null|object
-     */
-    public function searchAll($search, $items_per_page = 20, $start_index = 0)
-    {
-        if (! empty($search)) {
-            $params = [
-                'q' => $search,
-                'items_per_page' => $items_per_page,
-                'start_index' => $start_index,
-            ];
-
-            $response = $this->client->get('search/', $params);
-
-            return $response;
-        } else {
-            throw new \InvalidArgumentException('Invalid Argument: You must provide valid company name to search for.');
-        }
-    }
-
-    /**
-     * @return array|bool|mixed|null|object
+     * @return mixed
+     * @throws \Exception
      */
     public function get()
     {
-        if (empty($this->info)) {
-            return false;
-        }
+        if (! empty($this->number)) {
+            $url = $this->buildResourceUrl('/company/'.$this->number);
 
-        return $this->info;
+            $response = $this->client->get($url);
+
+            return $response;
+        } else {
+            throw new BadMethodCallException('Company number is not provided yet.');
+        }
     }
 
     /**
-     * @param $name
-     * @param $arguments
      * @return mixed
+     * @throws \Exception
      */
-    public function __call($name, $arguments)
+    public function registered_office_address()
     {
-        $property = $this->normaliseProperties($name);
-        if (property_exists($this, $property)) {
-            if (isset($this->$property) && ! empty($this->$property)) {
-                return $this->$property;
-            }
+        if (! empty($this->number)) {
+            $uri = "/company/{$this->number}/registered-office-address";
+
+            $url = $this->buildResourceUrl($uri);
+
+            $response = $this->client->get($url);
+
+            return $response;
+        } else {
+            throw new BadMethodCallException('Company number is not provided yet.');
         }
     }
 
     /**
-     * @param $camel
-     * @param string $splitter
-     * @return string
+     * @return array|mixed|null|object
+     * @throws \Exception
      */
-    public function normaliseProperties($camel, $splitter = '_')
+    public function officers()
     {
-        $camel = preg_replace('/(?!^)[[:upper:]][[:lower:]]/', '$0', preg_replace('/(?!^)[[:upper:]]+/', $splitter.'$0', $camel));
+        if (! empty($this->number)) {
+            $uri = "/company/{$this->number}/officers";
 
-        return strtolower($camel);
+            $url = $this->buildResourceUrl($uri);
+
+            $response = $this->client->get($url);
+
+            return $response;
+        } else {
+            throw new BadMethodCallException('Company number is not provided yet.');
+        }
     }
 
     /**
-     * @param $resources
-     *
-     * @return $this
+     * @return array|mixed|null|object
+     * @throws \Exception
      */
-    public function with($resources)
+    public function uk_establishments()
     {
-        if (! is_array($resources)) {
-            $resources = (array) $resources;
+        if (! empty($this->number)) {
+            $uri = "/company/{$this->number}/uk-establishments";
+
+            $url = $this->buildResourceUrl($uri);
+
+            $response = $this->client->get($url);
+
+            return $response;
+        } else {
+            throw new BadMethodCallException('Company number is not provided yet.');
         }
+    }
 
-        $this->with = $resources;
+    /**
+     * @return array|mixed|null|object
+     * @throws \Exception
+     */
+    public function registers()
+    {
+        if (! empty($this->number)) {
+            $uri = "/company/{$this->number}/registers";
 
-        return $this;
+            $url = $this->buildResourceUrl($uri);
+
+            $response = $this->client->get($url);
+
+            return $response;
+        } else {
+            throw new BadMethodCallException('Company number is not provided yet.');
+        }
+    }
+
+    /**
+     * @return array|mixed|null|object
+     * @throws \Exception
+     */
+    public function exemptions()
+    {
+        if (! empty($this->number)) {
+            $uri = "/company/{$this->number}/exemptions";
+
+            $url = $this->buildResourceUrl($uri);
+
+            $response = $this->client->get($url);
+
+            return $response;
+        } else {
+            throw new BadMethodCallException('Company number is not provided yet.');
+        }
     }
 }

@@ -1,8 +1,8 @@
 <?php
 
-namespace Ghazanfar\CompaniesHouseApi\Resources;
+namespace GhazanfarMir\CompaniesHouse\Resources;
 
-use Ghazanfar\CompaniesHouseApi\Http\Client;
+use GhazanfarMir\CompaniesHouse\Http\Client;
 
 /**
  * Class ResourcesBase.
@@ -13,6 +13,11 @@ class ResourcesBase
      * @var
      */
     protected $client;
+
+    /**
+     * @var string
+     */
+    protected $base_uri = 'https://api.companieshouse.gov.uk';
 
     /**
      * ResourcesBase constructor.
@@ -38,5 +43,14 @@ class ResourcesBase
         }
 
         return json_decode($response);
+    }
+
+    /**
+     * @param $uri
+     * @return string
+     */
+    protected function buildResourceUrl($uri)
+    {
+        return $this->base_uri.$uri;
     }
 }

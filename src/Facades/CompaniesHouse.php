@@ -1,10 +1,10 @@
 <?php
 
-namespace Ghazanfar\CompaniesHouseApi\Facades;
+namespace GhazanfarMir\CompaniesHouse\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-class CompaniesHouseApi extends Facade
+class CompaniesHouse extends Facade
 {
     /**
      * Get the registered name of the component.
