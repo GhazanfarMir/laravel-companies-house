@@ -52,14 +52,14 @@ CompaniesHouse::search()->disqualified_officers('Ebury');
 #### Companies
 
 ```
-CompaniesHouse::companies('07086058'); // returns an object
-CompaniesHouse::companies('07086058')->get();
-CompaniesHouse::companies('07086058')->registered_office_address();
-CompaniesHouse::companies('07086058')->officers();
-CompaniesHouse::companies('07086058')->insolvency();
-CompaniesHouse::companies('07086058')->establishments();
-CompaniesHouse::companies('07086058')->registers(); // returns 404
-CompaniesHouse::companies('07086058')->excemptions();
+CompaniesHouse::company('07086058'); // returns an object
+CompaniesHouse::company('07086058')->get();
+CompaniesHouse::company('07086058')->registered_office_address();
+CompaniesHouse::company('07086058')->officers();
+CompaniesHouse::company('07086058')->insolvency();
+CompaniesHouse::company('07086058')->establishments();
+CompaniesHouse::company('07086058')->registers(); // returns 404
+CompaniesHouse::company('07086058')->excemptions();
 ```
 
 #### Charges
