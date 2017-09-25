@@ -93,7 +93,7 @@ class SearchTest extends CompaniesHouseBaseTest
 
         $this->assertArrayHasKey('title', (array) $officers->items[0]);
 
-        $this->assertArrayHasKey('date_of_birth', (array) $officers->items[0]);
+        $this->assertArrayHasKey('kind', (array) $officers->items[0]);
 
         $this->assertArrayHasKey('address', (array) $officers->items[0]);
     }
