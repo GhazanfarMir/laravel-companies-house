@@ -24,7 +24,7 @@ Now register the Service Provider in config/app.php
     
     ...
     
-    Ghazanfar\CompaniesHouse\CompaniesHouseServiceProvider::class,
+    GhazanfarMir\CompaniesHouse\CompaniesHouseServiceProvider::class,
 ],
 ```
 And also add the alias to the same file.
@@ -34,7 +34,7 @@ And also add the alias to the same file.
     
     ...
     
-    'CompaniesHouse' => Ghazanfar\CompaniesHouse\Facades\CompaniesHouse::class,
+    'CompaniesHouse' => GhazanfarMir\CompaniesHouse\Facades\CompaniesHouse::class,
 ],
 ```
 
