@@ -96,6 +96,13 @@ CompaniesHouse::filingHistory('07086058')->find('MzE4MjE3NzM2MGFkaXF6a2N4');
 ## Questions
 Feel free to submit an issue if you have any issues.
 
+## Contributing
+ - Fork it!
+ - Create your feature branch: git checkout -b my-new-feature
+ - Commit your changes: git commit -m 'Add some feature'
+ - Push to the branch: git push -u origin my-new-feature
+ - Submit a pull request - cheers!
+
 ## License
 
 MIT License 2017 - Ghazanfar Mir
