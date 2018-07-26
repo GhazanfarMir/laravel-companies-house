@@ -1,6 +1,6 @@
 # Laravel Companies House 
 
-[![Build Status](https://travis-ci.org/ghazanfarmir/laravel-companies-house.svg?branch=master)](https://travis-ci.org/ghazanfarmir/laravel-companies-house)
+[![Build Status](https://travis-ci.org/GhazanfarMir/laravel-companies-house.svg?branch=master)](https://travis-ci.org/ghazanfarmir/laravel-companies-house)
 [![StyleCI](https://styleci.io/repos/100057895/shield?branch=master)](https://styleci.io/repos/100057895) 
 [![License](https://poser.pugx.org/ghazanfarmir/laravel-companies-house/license)](https://packagist.org/packages/ghazanfarmir/laravel-companies-house) 
 [![Latest Stable Version](https://poser.pugx.org/ghazanfarmir/laravel-companies-house/v/stable)](https://packagist.org/packages/ghazanfarmir/laravel-companies-house)
