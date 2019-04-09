@@ -48,6 +48,10 @@ php artisan vendor:publish
 
 ## How to use?
 
+```
+use GhazanfarMir\CompaniesHouse\Facades\CompaniesHouse;
+```
+
 #### Search
 
 ```
