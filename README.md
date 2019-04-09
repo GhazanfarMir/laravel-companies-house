@@ -41,8 +41,16 @@ And also add the alias to the same file.
     'CompaniesHouse' => GhazanfarMir\CompaniesHouse\Facades\CompaniesHouse::class,
 ],
 ```
+Finally publish the config file.
+```
+php artisan vendor:publish
+```
 
 ## How to use?
+
+```
+use GhazanfarMir\CompaniesHouse\Facades\CompaniesHouse;
+```
 
 #### Search
 
@@ -85,7 +93,7 @@ CompaniesHouse::filingHistory('07086058')->find('MzE4MjE3NzM2MGFkaXF6a2N4');
 ### Obtaining the CompaniesHouse API Key
 
  - You will need to register an application with **CompaniesHouse** by visiting https://developer.companieshouse.gov.uk/developer/applications.
- - then get API Key which can be used within your Laravel Application.
+ - then get API Key which can be used within your Laravel Application in config/companies.php.
 
 ## Companies House API (Beta release)
 
