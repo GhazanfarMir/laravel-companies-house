@@ -24,9 +24,9 @@ class CompanyTest extends CompaniesHouseBaseTest
 
         $companies = $this->api->company($this->number)->get();
 
-        $this->assertArrayHasKey('company_name', (array)$companies);
+        $this->assertArrayHasKey('company_name', (array) $companies);
 
-        $this->assertArrayHasKey('company_status', (array)$companies);
+        $this->assertArrayHasKey('company_status', (array) $companies);
     }
 
     /**
@@ -40,7 +40,7 @@ class CompanyTest extends CompaniesHouseBaseTest
             return;
         }
 
-        $address = (array)$this->api->company($this->number)->registered_office_address();
+        $address = (array) $this->api->company($this->number)->registered_office_address();
 
         $this->assertArrayHasKey('postal_code', $address);
         $this->assertArrayHasKey('country', $address);
@@ -62,9 +62,9 @@ class CompanyTest extends CompaniesHouseBaseTest
 
         $officers = $this->api->company($this->number)->officers();
 
-        $this->assertArrayHasKey('total_results', (array)$officers);
-        $this->assertArrayHasKey('name', (array)$officers->items[0]);
-        $this->assertArrayHasKey('address', (array)$officers->items[0]);
+        $this->assertArrayHasKey('total_results', (array) $officers);
+        $this->assertArrayHasKey('name', (array) $officers->items[0]);
+        $this->assertArrayHasKey('address', (array) $officers->items[0]);
     }
 
     /**
@@ -80,7 +80,7 @@ class CompanyTest extends CompaniesHouseBaseTest
 
         $establishments = $this->api->company($this->number)->uk_establishments();
 
-        $this->assertArrayHasKey('items', (array)$establishments);
+        $this->assertArrayHasKey('items', (array) $establishments);
     }
 
     /**
@@ -93,7 +93,6 @@ class CompanyTest extends CompaniesHouseBaseTest
         if ($this->platform == 'travis') {
             throw new \GhazanfarMir\CompaniesHouse\Exceptions\InvalidResourceException;
 
-
             return;
         }
 
@@ -105,7 +104,6 @@ class CompanyTest extends CompaniesHouseBaseTest
      */
     public function get_company_exemptions()
     {
-
         $this->expectException(InvalidResourceException::class);
 
         if ($this->platform == 'travis') {
