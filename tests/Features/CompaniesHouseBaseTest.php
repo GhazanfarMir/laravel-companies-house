@@ -45,5 +45,7 @@ abstract class CompaniesHouseBaseTest extends TestCase
         $this->api = new CompaniesHouse($this->client);
 
         $this->platform = getenv('PLATFORM');
+
+        $this->assertTrue(true);
     }
 }
