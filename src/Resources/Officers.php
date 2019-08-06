@@ -34,6 +34,7 @@ class Officers extends ResourcesBase
      *
      * @return array|mixed|null|object
      *
+     * @throws \Exception
      * @internal param $disqualified_flag
      */
     public function search($name, $items_per_page = 20, $start_index = 0)

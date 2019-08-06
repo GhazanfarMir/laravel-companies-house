@@ -9,6 +9,7 @@ class Search extends ResourcesBase
      * @param int $items_per_page
      * @param int $start_index
      * @return array|mixed|null|object
+     * @throws \Exception
      * @internal param $name
      */
     public function all($keyword, $items_per_page = 20, $start_index = 0)
@@ -33,6 +34,7 @@ class Search extends ResourcesBase
      * @param int $items_per_page
      * @param int $start_index
      * @return array|mixed|null|object
+     * @throws \Exception
      * @internal param $name
      */
     public function companies($keyword, $items_per_page = 20, $start_index = 0)
@@ -57,6 +59,7 @@ class Search extends ResourcesBase
      * @param int $items_per_page
      * @param int $start_index
      * @return array|mixed|null|object
+     * @throws \Exception
      * @internal param $name
      */
     public function officers($keyword, $items_per_page = 20, $start_index = 0)
@@ -81,6 +84,7 @@ class Search extends ResourcesBase
      * @param int $items_per_page
      * @param int $start_index
      * @return array|mixed|null|object
+     * @throws \Exception
      * @internal param $name
      */
     public function disqualified_officers($keyword, $items_per_page = 20, $start_index = 0)

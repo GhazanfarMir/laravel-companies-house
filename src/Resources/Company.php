@@ -11,7 +11,8 @@ use GhazanfarMir\CompaniesHouse\Http\Client;
 class Company extends ResourcesBase
 {
     /**
-     * @var
+     * Companies House Number
+     * @var string
      */
     protected $number;
 
@@ -28,13 +29,15 @@ class Company extends ResourcesBase
     }
 
     /**
+     * Get specified company details or throw an exception if no company number is defined
+     *
      * @return mixed
      * @throws \Exception
      */
     public function get()
     {
-        if (! empty($this->number)) {
-            $url = $this->buildResourceUrl('/company/'.$this->number);
+        if (!empty($this->number)) {
+            $url = $this->buildResourceUrl('/company/' . $this->number);
 
             $response = $this->client->get($url);
 
@@ -45,12 +48,14 @@ class Company extends ResourcesBase
     }
 
     /**
+     * Get specified company's registered address or throw an exception is no number is specified
+     *
      * @return mixed
      * @throws \Exception
      */
     public function registered_office_address()
     {
-        if (! empty($this->number)) {
+        if (!empty($this->number)) {
             $uri = "/company/{$this->number}/registered-office-address";
 
             $url = $this->buildResourceUrl($uri);
@@ -64,12 +69,14 @@ class Company extends ResourcesBase
     }
 
     /**
+     * Get specified company's officers or throw an exception if no number is defined.
+     *
      * @return array|mixed|null|object
      * @throws \Exception
      */
     public function officers()
     {
-        if (! empty($this->number)) {
+        if (!empty($this->number)) {
             $uri = "/company/{$this->number}/officers";
 
             $url = $this->buildResourceUrl($uri);
@@ -88,7 +95,7 @@ class Company extends ResourcesBase
      */
     public function uk_establishments()
     {
-        if (! empty($this->number)) {
+        if (!empty($this->number)) {
             $uri = "/company/{$this->number}/uk-establishments";
 
             $url = $this->buildResourceUrl($uri);
@@ -102,12 +109,14 @@ class Company extends ResourcesBase
     }
 
     /**
+     * Get specified company's registers or throw an exception if no number is defined.
+     *
      * @return array|mixed|null|object
      * @throws \Exception
      */
     public function registers()
     {
-        if (! empty($this->number)) {
+        if (!empty($this->number)) {
             $uri = "/company/{$this->number}/registers";
 
             $url = $this->buildResourceUrl($uri);
@@ -121,12 +130,14 @@ class Company extends ResourcesBase
     }
 
     /**
+     * Get specified company's exceptions or throw an exception if no number is defined
+     *
      * @return array|mixed|null|object
      * @throws \Exception
      */
     public function exemptions()
     {
-        if (! empty($this->number)) {
+        if (!empty($this->number)) {
             $uri = "/company/{$this->number}/exemptions";
 
             $url = $this->buildResourceUrl($uri);
