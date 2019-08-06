@@ -36,7 +36,7 @@ abstract class CompaniesHouseBaseTest extends TestCase
     /**
      * @test
      */
-    public function setUp(): void 
+    public function setUp(): void
     {
         parent::setUp();
 
