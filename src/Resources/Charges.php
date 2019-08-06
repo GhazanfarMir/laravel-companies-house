@@ -34,7 +34,7 @@ class Charges extends ResourcesBase
      */
     public function all($items_per_page = 20, $start_index = 0)
     {
-        if (!empty($this->number)) {
+        if (! empty($this->number)) {
             $uri = "/company/$this->number/charges";
 
             $url = $this->buildResourceUrl($uri);
@@ -51,7 +51,7 @@ class Charges extends ResourcesBase
     }
 
     /**
-     * Find specific charge by Id
+     * Find specific charge by Id.
      *
      * @param $chargeId
      * @return array|mixed|null|object
@@ -63,7 +63,7 @@ class Charges extends ResourcesBase
             throw new \InvalidArgumentException('You must provide a ChargesId.');
         }
 
-        if (!empty($this->number)) {
+        if (! empty($this->number)) {
             $uri = "/company/$this->number/charges/$chargeId";
 
             $url = $this->buildResourceUrl($uri);

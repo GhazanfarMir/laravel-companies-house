@@ -11,7 +11,7 @@ use Prophecy\Exception\InvalidArgumentException;
 class FilingHistory extends ResourcesBase
 {
     /**
-     * Companies House number
+     * Companies House number.
      * @var string
      */
     protected $number;
@@ -30,7 +30,7 @@ class FilingHistory extends ResourcesBase
 
     /**
      * Get paginated filing history for the specified company or throw an
-     * exception if no company number is defined
+     * exception if no company number is defined.
      *
      * @param int $items_per_page
      * @param int $start_index
@@ -39,7 +39,7 @@ class FilingHistory extends ResourcesBase
      */
     public function all($items_per_page = 20, $start_index = 0)
     {
-        if (!empty($this->number)) {
+        if (! empty($this->number)) {
             $uri = "/company/$this->number/filing-history";
 
             $url = $this->buildResourceUrl($uri);
@@ -56,7 +56,7 @@ class FilingHistory extends ResourcesBase
     }
 
     /**
-     * Get transaction by transaction id for a specified company or throw an exception
+     * Get transaction by transaction id for a specified company or throw an exception.
      *
      * @param $transaction_id
      * @return array|mixed|null|object
@@ -68,7 +68,7 @@ class FilingHistory extends ResourcesBase
             throw new InvalidArgumentException('You must provide a transactionId.');
         }
 
-        if (!empty($this->number)) {
+        if (! empty($this->number)) {
             $uri = "/company/$this->number/filing-history/$transaction_id";
 
             $url = $this->buildResourceUrl($uri);
