@@ -21,3 +21,4 @@ Homestead.json
 .rocketeer/
 /composer.lock
 *.phpunit.result.cache
+*.env.test

@@ -11,7 +11,7 @@ abstract class CompaniesHouseBaseTest extends TestCase
     /**
      * @var string
      */
-    protected $api_key = 'IvSp6uE13FPbE8iDPx6Yey9aQ64jH3Cvm18eAE_N';
+    protected $api_key;
 
     /**
      * @var string
@@ -39,6 +39,8 @@ abstract class CompaniesHouseBaseTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
+
+        $this->api_key = 'IvSp6uE13FPbE8iDPx6Yey9aQ64jH3Cvm18eAE_N';
 
         $this->client = new Client($this->base_uri, $this->api_key);
 

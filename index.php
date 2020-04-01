@@ -11,7 +11,7 @@ try {
 
     $base_uri = 'https://api.companieshouse.gov.uk/';
 
-    $api_key = 'IvSp6uE13FPbE8iDPx6Yey9aQ64jH3Cvm18eAE_N';
+    $api_key = env('COMPANIES_HOUSE_API_KEY');
 
     $client = new Client($base_uri, $api_key);
 
