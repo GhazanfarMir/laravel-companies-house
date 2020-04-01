@@ -3,10 +3,10 @@
 namespace GhazanfarMir\CompaniesHouse;
 
 use GhazanfarMir\CompaniesHouse\Http\Client;
-use GhazanfarMir\CompaniesHouse\Resources\Search;
 use GhazanfarMir\CompaniesHouse\Resources\Charges;
 use GhazanfarMir\CompaniesHouse\Resources\Company;
 use GhazanfarMir\CompaniesHouse\Resources\FilingHistory;
+use GhazanfarMir\CompaniesHouse\Resources\Search;
 
 /**
  * Class CompaniesHouse.

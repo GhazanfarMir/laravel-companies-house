@@ -2,8 +2,8 @@
 
 namespace GhazanfarMir\CompaniesHouse;
 
-use Illuminate\Support\ServiceProvider;
 use GhazanfarMir\CompaniesHouse\Http\Client;
+use Illuminate\Support\ServiceProvider;
 
 class CompaniesHouseServiceProvider extends ServiceProvider
 {
