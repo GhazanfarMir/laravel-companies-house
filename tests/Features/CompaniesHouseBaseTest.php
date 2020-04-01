@@ -2,9 +2,9 @@
 
 namespace GhazanfarMir\CompaniesHouse\Tests\Features;
 
-use PHPUnit\Framework\TestCase;
-use GhazanfarMir\CompaniesHouse\Http\Client;
 use GhazanfarMir\CompaniesHouse\CompaniesHouse;
+use GhazanfarMir\CompaniesHouse\Http\Client;
+use PHPUnit\Framework\TestCase;
 
 abstract class CompaniesHouseBaseTest extends TestCase
 {
