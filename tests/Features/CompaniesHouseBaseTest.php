@@ -8,29 +8,19 @@ use PHPUnit\Framework\TestCase;
 
 abstract class CompaniesHouseBaseTest extends TestCase
 {
-    /**
-     * @var string
-     */
+    /** @var string Companies House Api Key. */
     protected $api_key;
 
-    /**
-     * @var string
-     */
-    protected $base_uri = 'https://api.companieshouse.gov.uk/';
+    /** @var string Companies House Api Uri. */
+    protected $base_uri;
 
-    /**
-     * @var
-     */
+    /** @var Client Companies House package client. */
     protected $client;
 
-    /**
-     * @var
-     */
+    /** @var CompaniesHouse Companies House package. */
     protected $api;
 
-    /**
-     * @var
-     */
+    /** @var string */
     protected $platform;
 
     /**
@@ -40,12 +30,10 @@ abstract class CompaniesHouseBaseTest extends TestCase
     {
         parent::setUp();
 
+        $this->base_uri = 'https://api.companieshouse.gov.uk/';
         $this->api_key = 'IvSp6uE13FPbE8iDPx6Yey9aQ64jH3Cvm18eAE_N';
-
         $this->client = new Client($this->base_uri, $this->api_key);
-
         $this->api = new CompaniesHouse($this->client);
-
         $this->platform = getenv('PLATFORM');
 
         $this->assertTrue(true);

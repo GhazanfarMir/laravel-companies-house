@@ -22,3 +22,4 @@ Homestead.json
 /composer.lock
 *.phpunit.result.cache
 *.env.test
+*.env.testing
