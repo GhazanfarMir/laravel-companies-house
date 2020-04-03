@@ -5,13 +5,13 @@ use GhazanfarMir\CompaniesHouse\Http\Client;
 
 include 'vendor/autoload.php';
 
-define('NEWLINE', php_sapi_name()==='cli'?PHP_EOL:'<br>');
+define('NEWLINE', php_sapi_name() === 'cli' ? PHP_EOL : '<br>');
 
 try {
 
     $base_uri = 'https://api.companieshouse.gov.uk/';
 
-    $api_key = env('COMPANIES_HOUSE_API_KEY');
+    $api_key = 'IvSp6uE13FPbE8iDPx6Yey9aQ64jH3Cvm18eAE_N';
 
     $client = new Client($base_uri, $api_key);
 
