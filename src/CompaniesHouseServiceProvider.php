@@ -22,7 +22,7 @@ class CompaniesHouseServiceProvider extends ServiceProvider
     {
         $this->app->singleton('companieshouse', function ($app) {
             $base_uri = Config::get('companies.base_uri');
-            
+
             $api_key = env('COMPANIES_HOUSE_API_KEY');
 
             $client = new Client($base_uri, $api_key);
