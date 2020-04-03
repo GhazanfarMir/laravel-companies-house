@@ -24,6 +24,6 @@ return [
      * https://developer.companieshouse.gov.uk/developer/applications
      */
 
-    'key' => 'YOUR_API_KEY_HERE',
+    'key' => env('COMPANIES_HOUSE_API_KEY'),
 
 ];

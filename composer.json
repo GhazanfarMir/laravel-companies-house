@@ -4,6 +4,7 @@
     "keywords": ["companies-house", "laravel"],
     "type": "library",
     "license": "MIT",
+    "version": "0.7",
     "authors": [
         {
             "name": "Ghazanfar Mir",

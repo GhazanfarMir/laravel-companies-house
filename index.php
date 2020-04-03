@@ -5,7 +5,7 @@ use GhazanfarMir\CompaniesHouse\Http\Client;
 
 include 'vendor/autoload.php';
 
-define('NEWLINE', php_sapi_name()==='cli'?PHP_EOL:'<br>');
+define('NEWLINE', php_sapi_name() === 'cli' ? PHP_EOL : '<br>');
 
 try {
 

@@ -3,6 +3,7 @@
 namespace GhazanfarMir\CompaniesHouse;
 
 use GhazanfarMir\CompaniesHouse\Http\Client;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
 
 class CompaniesHouseServiceProvider extends ServiceProvider
@@ -20,9 +21,9 @@ class CompaniesHouseServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton('companieshouse', function ($app) {
-            $base_uri = 'https://api.companieshouse.gov.uk/';
+            $base_uri = Config::get('companies.base_uri');
 
-            $api_key = 'IvSp6uE13FPbE8iDPx6Yey9aQ64jH3Cvm18eAE_N';
+            $api_key = env('COMPANIES_HOUSE_API_KEY');
 
             $client = new Client($base_uri, $api_key);
 
