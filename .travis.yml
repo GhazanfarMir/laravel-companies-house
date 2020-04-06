@@ -10,7 +10,7 @@ env:
   - PLATFORM=travis
 
 php:
-  - '7.3'
+  - '7.2'
 
 before_install:
   - sudo apt-get update
