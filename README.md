@@ -17,13 +17,13 @@ More information about this free API can be found
 
 To install, use the following to pull the package via Composer.
 
-```
+```bash
 composer require ghazanfarmir/laravel-companies-house
 ```
 
 Now register the Service Provider in config/app.php
 
-```
+```php
 'providers' => [
     
     ...
@@ -33,7 +33,7 @@ Now register the Service Provider in config/app.php
 ```
 And also add the alias to the same file.
 
-```
+```php
 'aliases' => [
     
     ...
@@ -42,19 +42,19 @@ And also add the alias to the same file.
 ],
 ```
 Finally publish the config file.
-```
+```bash
 php artisan vendor:publish
 ```
 
 ## How to use?
 
-```
+```php
 use GhazanfarMir\CompaniesHouse\Facades\CompaniesHouse;
 ```
 
 #### Search
 
-```
+```php
 CompaniesHouse::search()->all('Ebury');
 CompaniesHouse::search()->companies('Ebury');
 CompaniesHouse::search()->officers('Ebury');
@@ -63,7 +63,7 @@ CompaniesHouse::search()->disqualified_officers('Ebury');
 
 #### Companies
 
-```
+```php
 CompaniesHouse::company('07086058'); // returns an object
 CompaniesHouse::company('07086058')->get();
 CompaniesHouse::company('07086058')->registered_office_address();
@@ -76,14 +76,14 @@ CompaniesHouse::company('07086058')->excemptions();
 
 #### Charges
 
-```
+```php
 CompaniesHouse::charges('07086058')->all();
 CompaniesHouse::charges('07086058')->find(chargesId);
 ```
 
 #### Filing History
 
-```
+```php
 CompaniesHouse::filingHistory('07086058')->all();
 CompaniesHouse::filingHistory('07086058')->find('MzE4MjE3NzM2MGFkaXF6a2N4');
 ```
