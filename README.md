@@ -68,6 +68,7 @@ CompaniesHouse::company('07086058'); // returns an object
 CompaniesHouse::company('07086058')->get();
 CompaniesHouse::company('07086058')->registered_office_address();
 CompaniesHouse::company('07086058')->officers();
+CompaniesHouse::company('07086058')->persons_with_significant_control();
 CompaniesHouse::company('07086058')->insolvency();
 CompaniesHouse::company('07086058')->establishments();
 CompaniesHouse::company('07086058')->registers(); // returns 404
